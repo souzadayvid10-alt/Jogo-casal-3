@@ -3,281 +3,3342 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0d1115">
-<title>A Mansão das Duas Vozes</title>
+<meta name="theme-color" content="#10121b">
+<title>A Mansão das Duas Vozes — Arquivo 13</title>
 <style>
-:root{--bg:#0d1115;--panel:#171e24;--panel2:#202a31;--line:#34434b;--text:#edf1e8;--muted:#a8b2ad;--gold:#d3ad6a;--red:#c6675f;--green:#87b89a}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#29343a 0,#11171b 45%,#090c0f 100%);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
-button,input{font:inherit}button{border:1px solid #58646a;background:#28343a;color:var(--text);border-radius:12px;padding:14px 16px;min-height:52px;font-weight:700;cursor:pointer;touch-action:manipulation;transition:transform .12s,background .18s,border-color .18s}button:active{transform:scale(.98)}button:hover{background:#34434a;border-color:var(--gold)}button.primary{background:#a77d40;color:#15120d;border-color:#d0aa69}button.danger{border-color:#95534e;color:#ffd9d4}button:disabled{opacity:.45;cursor:not-allowed}
-input{width:100%;padding:14px;border-radius:11px;border:1px solid #536168;background:#0e1418;color:var(--text);min-height:52px;outline:none}input:focus{border-color:var(--gold);box-shadow:0 0 0 2px #d3ad6a33}
-.wrap{width:min(760px,100%);margin:auto;padding:20px 16px 36px}.brand{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800}.title{font-family:Georgia,serif;font-weight:500;line-height:1.05;font-size:clamp(2.2rem,10vw,4rem);margin:12px 0}.subtitle{color:var(--muted);max-width:54ch}.screen{animation:fade .35s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.card{background:linear-gradient(145deg,#1a2228ee,#12191eee);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 12px 34px #0003}.stack{display:grid;gap:12px}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}.small{font-size:13px;color:var(--muted)}.label{font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin-bottom:7px}.code{letter-spacing:.25em;font-weight:900;font-size:1.6rem;color:#f0d49e}.hidden{display:none!important}.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0 16px}.pill{border:1px solid var(--line);background:#141b20;padding:8px 12px;border-radius:99px;font-size:13px;white-space:nowrap}.timer{font-variant-numeric:tabular-nums;font-weight:900;color:#f0d49e}.timer.urgent{color:#ff8177;animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.5}}
-.roomhead{display:flex;justify-content:space-between;align-items:end;gap:10px}.roomhead h2{font:500 2rem Georgia,serif;margin:0}.roomart{font-size:2.4rem;opacity:.9}.clue{border-left:3px solid var(--gold);padding:10px 12px;background:#11181c;border-radius:0 10px 10px 0;margin:8px 0;color:#e4e5dc}.clue strong{color:var(--gold)}.puzzle{border:1px solid #38464b;background:#151d22;border-radius:15px;padding:16px;margin:13px 0}.puzzle h3{margin:2px 0 8px;font-size:1rem}.solved{color:var(--green);font-weight:800}.puzzle-controls{display:flex;gap:9px;margin-top:11px}.puzzle-controls input{min-width:0}.puzzle-controls button{flex:0 0 auto}.actions{display:grid;gap:10px}.statusline{display:flex;gap:8px;flex-wrap:wrap}.inventory{display:flex;gap:8px;flex-wrap:wrap}.item{padding:7px 10px;border:1px solid #536354;border-radius:99px;color:#c5e2c4;background:#18231d;font-size:13px}.log{font-size:13px;color:#bbc3bd;min-height:20px;margin-top:8px}.notice{padding:12px;border-radius:10px;background:#2b2417;color:#f0d49e;border:1px solid #665433}.footer{text-align:center;color:#73817d;font-size:12px;margin-top:22px}.hero{padding-top:10vh}.safe{color:var(--green)}.warning{color:#ffc2ac}
-@media(min-width:620px){.wrap{padding-top:32px}.stack.two{grid-template-columns:1fr 1fr}.puzzle{padding:18px}}
+:root{
+  color-scheme:dark;
+  --bg:#10121b;--panel:#191d2b;--panel2:#202638;
+  --text:#eef1f8;--muted:#aeb8ce;--line:#35405a;
+  --accent:#e7b975;--blue:#9bbdff;--green:#9cdbbd;--red:#ff9b9b;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.55;min-height:100vh;min-height:100dvh
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(ellipse at top,#29304c66,transparent 65%)
+}
+button,input{font:inherit}
+button{
+  min-height:49px;padding:12px 16px;border-radius:12px;
+  border:1px solid var(--line);background:var(--panel2);
+  color:var(--text);cursor:pointer;touch-action:manipulation
+}
+button:hover:not(:disabled){border-color:var(--accent)}
+button:active:not(:disabled){transform:translateY(1px)}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.primary{background:var(--accent);border-color:var(--accent);color:#19130c;font-weight:750}
+button.danger{border-color:#764747}
+button.small{min-height:44px;padding:8px 12px;font-size:.9rem}
+input{
+  width:100%;min-height:52px;background:#0e1220;border:1px solid var(--line);
+  border-radius:12px;color:var(--text);padding:12px;font-size:18px
+}
+input:focus,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+input.code{text-align:center;letter-spacing:.3em;text-transform:uppercase}
+main{width:min(100%,780px);margin:auto;padding:20px 16px 60px}
+h1,h2,h3,h4{line-height:1.2;margin:0 0 14px}
+h1{font-size:clamp(2rem,8vw,3.2rem)}
+h2{font-size:1.6rem}h3{font-size:1.2rem}h4{font-size:1rem}
+p{margin:10px 0}
+small,.muted{color:var(--muted)}
+.eyebrow{letter-spacing:.16em;font-size:.73rem;color:var(--accent);text-transform:uppercase}
+.card{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:18px;padding:20px;margin:16px 0;
+  animation:enter .25s ease-out
+}
+.card.good{border-color:#477c68}
+.card.locked{border-style:dashed}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.stack{display:grid;gap:12px}
+.stack>button{width:100%}
+.hero{padding:28px 0 10px}
+.clue{padding:16px;border-radius:12px;background:#0f1422;border-left:3px solid var(--blue)}
+.clue.rule{border-left-color:var(--accent)}
+.clue ol{padding-left:24px}
+.clue li{margin:9px 0}
+.clue table{width:100%;border-collapse:collapse}
+.clue th,.clue td{padding:9px 6px;border-bottom:1px solid #303b52;text-align:left}
+.clue th{color:var(--muted);font-weight:500}
+.clue .matrix th,.clue .matrix td{text-align:center}
+.clue .matrix td{font-size:1.25rem;font-variant-numeric:tabular-nums}
+.pill{
+  display:inline-flex;gap:5px;align-items:center;border:1px solid var(--line);
+  border-radius:99px;padding:5px 10px;font-size:.82rem;color:var(--muted)
+}
+.pill.ok{color:var(--green);border-color:#477c68}
+.pill.warn{color:var(--accent)}
+.hud{
+  position:sticky;top:0;z-index:5;
+  margin:-20px -16px 20px;padding:12px 16px;
+  background:#10121bf5;border-bottom:1px solid var(--line)
+}
+.timer{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums}
+.timer.urgent{color:var(--red)}
+.progress{height:4px;background:#30384d;margin-top:10px;overflow:hidden;border-radius:9px}
+.progress span{display:block;height:100%;background:var(--accent)}
+.roomcode{font-size:3rem;font-weight:800;letter-spacing:.2em;text-align:center;color:var(--accent)}
+.seals{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.feedback{padding:10px 12px;border-radius:9px;background:#3b2631;color:#ffc9c9}
+.notice{padding:12px;border:1px solid #6f6244;border-radius:12px;color:#e8d1a9}
+.success{color:var(--green)}
+.item{border-radius:9px;padding:6px 9px;background:#30384a;display:inline-block;font-size:.85rem}
+.inventory{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+details summary{cursor:pointer;min-height:40px;padding-top:5px}
+.answer{display:flex;gap:10px;margin-top:16px}
+.answer input{min-width:0;letter-spacing:.2em}
+.answer button{flex-shrink:0}
+.sync-count{font-weight:800;color:var(--accent)}
+footer{font-size:.82rem;color:var(--muted);margin-top:30px}
+#toast{
+  position:fixed;bottom:max(20px,env(safe-area-inset-bottom));left:50%;
+  transform:translateX(-50%);width:min(92%,600px);z-index:50;
+  background:#e6eafa;color:#171c2a;border-radius:12px;padding:14px 18px;
+  box-shadow:0 8px 30px #0008;display:none
+}
+#toast.show{display:block}
+@keyframes enter{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
-<main class="wrap">
-  <section id="home" class="screen hero">
-    <div class="brand">Jogo cooperativo • 2 celulares</div>
-    <h1 class="title">A Mansão<br>das Duas Vozes</h1>
-    <p class="subtitle">Duas pessoas. Duas versões da verdade. Uma mansão que não quer deixar ninguém sair.</p>
-    <div class="card stack">
-      <button class="primary" id="createBtn">Criar sala</button>
-      <div class="label">ou entrar com um código</div>
-      <div class="row"><input id="joinCode" maxlength="4" placeholder="CÓDIGO" autocomplete="off" aria-label="Código da sala"><button id="joinBtn">Entrar</button></div>
-      <p class="small">Cada jogador usa seu próprio celular. Mantenham a página aberta e conversem por ligação ou WhatsApp: as pistas são diferentes em cada tela.</p>
-    </div>
-    <p class="small">O jogo usa conexão direta entre navegadores via PeerJS. É necessário acesso à internet para estabelecer a conexão.</p>
-    <div id="homeMessage" class="log" role="status"></div>
-  </section>
+<main id="app"></main>
+<div id="toast" role="status" aria-live="polite"></div>
 
-  <section id="lobby" class="screen hidden">
-    <div class="brand">A Mansão das Duas Vozes</div>
-    <h1 class="title">A sala está pronta.</h1>
-    <div class="card">
-      <div class="label">Compartilhe este código com o outro jogador</div>
-      <div id="roomCode" class="code">----</div>
-      <p id="lobbyStatus" class="small">Aguardando conexão do segundo jogador…</p>
-      <div class="notice">Assim que os dois estiverem conectados, o cronômetro de 60 minutos começa.</div>
-    </div>
-    <button id="backHome" class="danger">Voltar ao início</button>
-  </section>
-
-  <section id="game" class="screen hidden">
-    <div class="topbar">
-      <span class="pill" id="roleBadge">Jogador</span>
-      <span class="pill timer" id="timer">60:00</span>
-    </div>
-    <div class="statusline">
-      <span class="pill" id="roomCounter">Sala 1 de 3</span>
-      <span class="pill" id="connectionBadge">Conectando…</span>
-      <span class="pill" id="hintCount">Dicas: 3</span>
-    </div>
-    <div id="gameContent"></div>
-    <div class="card">
-      <div class="label">Inventário compartilhado</div>
-      <div id="inventory" class="inventory"><span class="small">Ainda vazio</span></div>
-      <div id="lastHint" class="log"></div>
-    </div>
-    <button id="hintBtn" class="danger">Pedir uma dica (restam 3)</button>
-    <div id="gameMessage" class="log" role="status"></div>
-    <div class="footer">Se a conexão cair, o jogo tenta reconectar. O progresso é salvo neste aparelho e sincronizado ao voltar.</div>
-  </section>
-
-  <section id="ending" class="screen hidden">
-    <div class="brand">A Mansão das Duas Vozes</div>
-    <h1 class="title" id="endingTitle">Fim</h1>
-    <div class="card"><p id="endingText"></p><p class="small" id="endingSub"></p></div>
-    <button id="againBtn" class="primary">Jogar novamente</button>
-  </section>
-</main>
-<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script>
 <script>
-(()=>{
 "use strict";
-const $=id=>document.getElementById(id);
-const STORAGE="duasvozes_v1";
-let peer=null, conn=null, role=null, roomCode="", state=null, retryTimer=null, clockTimer=null, reconnecting=false;
-const rooms=[
- {name:"Vestíbulo",icon:"🏚️",intro:"O assoalho range sob seus pés. A porta da rua bateu sozinha. No alto da escadaria, um relógio parado marca meia-noite.",puzzles:["foyer_code","foyer_sync"]},
- {name:"Biblioteca",icon:"📚",intro:"Livros cobrem as paredes. Um deles está aberto numa página arrancada; o ar cheira a papel molhado e ozônio.",puzzles:["library_riddle","library_atlas","library_sync"]},
- {name:"Laboratório",icon:"⚗️",intro:"Atrás de uma estante, vocês encontram um laboratório clandestino. Duas cadeiras estão presas ao chão, diante de um painel ainda ligado.",puzzles:["lab_sequence","lab_choice"]}
+
+/*
+  MANSÃO DAS DUAS VOZES — ARQUIVO 13
+  Um arquivo, sem dependências além do PeerJS.
+
+  Cooperação:
+  - Jogador 1 vê dados.
+  - Jogador 2 vê instruções.
+  - As soluções são derivadas da composição das duas informações.
+  - Só há validação após os dois enviarem suas respostas.
+  - Não existe botão para exibir a pista do parceiro.
+
+  O criador é a autoridade do estado da partida.
+  O código-fonte de um jogo estático não é um mecanismo antitrapaça:
+  alguém que inspecionar o JavaScript poderá estudar sua lógica.
+*/
+
+const VERSION = 13;
+const PREFIX = "mdv-arquivo13-r1-";
+const SAVE_KEY = "mdv-arquivo13-r1-save";
+const GAME_TIME = 60 * 60 * 1000;
+const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+
+const SCENES = [
+  {
+    name:"Átrio das Máscaras",
+    intro:"Vocês acordam em lados opostos do mesmo átrio. Um vê placas sob as máscaras; o outro, inscrições que só aparecem no espelho. Uma voz anuncia: “Sessenta minutos. Nenhuma porta aceita uma voz sozinha.”",
+    tags:["Corvo","Lua","Espinho","Vela","Olho","Rosa"],
+    puzzles:[
+      ["O cadeado das máscaras","order"],
+      ["O painel atrás do espelho","grid"]
+    ],
+    items:["Chave sem dente","Dente de aço"],
+    tool:"Chave restaurada",
+    sync:true,
+    after:"A primeira porta se abre. No batente, alguém riscou: “Vocês já passaram por aqui. Desta vez, não confiem apenas no que conseguem ver.”"
+  },
+  {
+    name:"Biblioteca Cega",
+    intro:"Nenhum livro tem título. Em uma parede há um catálogo de selos; na outra, uma ficha descreve quais volumes devem ser consultados. A caligrafia parece familiar aos dois.",
+    tags:["Atlas","Diário","Bestiário","Herbário","Almanaque","Testamento"],
+    puzzles:[
+      ["O catálogo proibido","sort"],
+      ["As contas do bibliotecário","calc"]
+    ],
+    items:["Metade esquerda do mapa","Metade direita do mapa"],
+    tool:"Mapa das passagens",
+    sync:false,
+    after:"O mapa revela um laboratório sob a biblioteca. Um registro menciona o Projeto Duas Vozes, criado para guardar lembranças que uma pessoa não conseguiria carregar sozinha."
+  },
+  {
+    name:"Laboratório Oculto",
+    intro:"Há dois assentos ligados à mesma máquina. Os eletrodos ainda estão quentes. Um visor exibe medições; o outro descreve o protocolo, mas omite todos os valores.",
+    tags:["Soro","Pulso","Neônio","Éter","Cobre","Prata"],
+    puzzles:[
+      ["O protocolo dos eletrodos","calc"],
+      ["A calibração ultravioleta","compare"]
+    ],
+    items:["Lanterna sem energia","Célula âmbar"],
+    tool:"Lanterna ultravioleta",
+    sync:false,
+    after:"A lanterna revela: “Os participantes consentiram. A memória do consentimento foi removida para proteger o experimento.” Há dez setores adiante. A saída não fica atrás de vocês."
+  },
+  {
+    name:"Galeria dos Herdeiros",
+    intro:"Retratos observam vocês de ângulos impossíveis. Um jogador distingue as marcas das molduras. O outro lê a ordem de uma procissão pintada no teto.",
+    tags:["Herdeira","Médico","Jardineira","Capitão","Astrônoma","Guardião"],
+    puzzles:[
+      ["A procissão dos retratos","order"],
+      ["A parede das ausências","grid"]
+    ],
+    items:["Moldura partida","Retrato sem moldura"],
+    tool:"Retrato recomposto",
+    sync:true,
+    after:"As pessoas dos retratos não eram proprietárias da mansão. Eram pacientes. Cada sala conserva a lembrança de alguém que aceitou participar do projeto."
+  },
+  {
+    name:"Salão dos Ecos",
+    intro:"Um piano toca notas sem produzir som. Perto dele, um registro associa instrumentos a intensidades. A partitura do outro lado só pode ser vista pelo segundo jogador.",
+    tags:["Piano","Violino","Sino","Flauta","Órgão","Tambor"],
+    puzzles:[
+      ["A partitura muda","compare"],
+      ["O peso dos ecos","sort"]
+    ],
+    items:["Cilindro de cera","Agulha do fonógrafo"],
+    tool:"Gravação restaurada",
+    sync:false,
+    after:"Na gravação, duas vozes adultas discutem o projeto. São as vozes de vocês. Uma delas diz: “Se esquecermos tudo, ainda conseguiremos escolher juntos?”"
+  },
+  {
+    name:"Estufa Noturna",
+    intro:"Flores crescem sem luz. As etiquetas mostram propriedades diferentes para cada pessoa. Uma campainha toca sempre que alguém tenta interpretar tudo sem ouvir o outro.",
+    tags:["Íris","Dália","Lírio","Hera","Musgo","Orquídea"],
+    puzzles:[
+      ["A mistura das sementes","calc"],
+      ["O canteiro invisível","grid"]
+    ],
+    items:["Frasco vazio","Resina luminosa"],
+    tool:"Frasco de resina",
+    sync:false,
+    after:"Nas raízes há pequenos receptáculos de memória. A mansão não apenas conserva registros: ela os reorganiza. A voz que os guia parece feita de muitas pessoas."
+  },
+  {
+    name:"Cozinha do Tempo",
+    intro:"Os relógios estão parados em horários diferentes. Uma receita não lista quantidades; outra folha contém apenas ingredientes e medidas. O elevador de serviço exige as duas metades da receita.",
+    tags:["Sal","Mel","Canela","Cravo","Anis","Cacau"],
+    puzzles:[
+      ["A receita sem quantidades","order"],
+      ["A balança do cozinheiro","sort"]
+    ],
+    items:["Manivela curta","Eixo do elevador"],
+    tool:"Manivela do elevador",
+    sync:true,
+    after:"O elevador desce em vez de subir. A placa de segurança diz: “A separação física não encerra o vínculo. O desligamento deve ser aprovado por ambas as âncoras.”"
+  },
+  {
+    name:"Capela sem Santos",
+    intro:"Os vitrais mostram pessoas comuns. Um jogador consegue ler as inscrições de cada fragmento; o outro reconhece as posições indicadas no confessionário.",
+    tags:["Aurora","Vigília","Luto","Promessa","Perdão","Silêncio"],
+    puzzles:[
+      ["O vitral fragmentado","grid"],
+      ["O confessionário","compare"]
+    ],
+    items:["Selo de bronze","Fita do juramento"],
+    tool:"Selo do juramento",
+    sync:false,
+    after:"Um juramento assinado pelos dois estabelece uma escolha: encerrar o arquivo ou preservá-lo como testemunho. Discordar durante o desligamento reinicia o isolamento."
+  },
+  {
+    name:"Observatório sem Céu",
+    intro:"A cúpula projeta constelações que não existem. O catálogo de uma tela e o roteiro celeste da outra parecem incoerentes, até que vocês os leem em conjunto.",
+    tags:["Lince","Dragão","Lira","Cisne","Órion","Fênix"],
+    puzzles:[
+      ["O alinhamento impossível","sort"],
+      ["O motor da cúpula","calc"]
+    ],
+    items:["Lente rachada","Aro de cobre"],
+    tool:"Lente estabilizada",
+    sync:false,
+    after:"O céu é uma simulação. Atrás da projeção, vocês veem dois corpos conectados à máquina. A mansão é um espaço de memória; seus corpos estão do lado de fora."
+  },
+  {
+    name:"Cisterna dos Sussurros",
+    intro:"A água repete frases antes que vocês as digam. Uma parede mede a pressão das válvulas. A outra descreve um percurso seguro, sem mostrar as pressões.",
+    tags:["Norte","Sul","Leste","Oeste","Centro","Fundo"],
+    puzzles:[
+      ["O percurso das válvulas","order"],
+      ["A comporta de pressão","compare"]
+    ],
+    items:["Engrenagem de ferro","Correia de couro"],
+    tool:"Acionador da comporta",
+    sync:true,
+    after:"A água abaixa e revela centenas de nomes. A voz da casa não é uma entidade única: é a sobreposição dos arquivos dos pacientes."
+  },
+  {
+    name:"Quarto das Duas Camas",
+    intro:"Cada cama tem um diário. Vocês reconhecem suas próprias palavras, mas não os acontecimentos. As páginas dizem que os dois entraram voluntariamente para investigar o desaparecimento das memórias dos pacientes.",
+    tags:["Infância","Viagem","Promessa","Encontro","Despedida","Retorno"],
+    puzzles:[
+      ["A sequência das lembranças","grid"],
+      ["A equação do esquecimento","calc"]
+    ],
+    items:["Diário incompleto","Folha arrancada"],
+    tool:"Diário recuperado",
+    sync:false,
+    after:"A lembrança volta: vocês não construíram a prisão. Entraram para provar que os pacientes ainda existiam no arquivo. Aceitaram esquecer o plano para que a própria mansão não o detectasse."
+  },
+  {
+    name:"Arquivo das Memórias",
+    intro:"Milhares de vozes aguardam uma decisão. Algumas pedem descanso. Outras querem que seus registros sobrevivam. O terminal só aceita comandos calculados a partir de duas telas separadas.",
+    tags:["Origem","Nome","Rosto","Vínculo","Escolha","Legado"],
+    puzzles:[
+      ["O índice das identidades","sort"],
+      ["A chave do testemunho","order"]
+    ],
+    items:["Fita de memória","Carcaça do gravador"],
+    tool:"Arquivo de testemunhos",
+    sync:false,
+    after:"Vocês recuperam as provas. A reviravolta está completa: o alarme não anuncia a morte de vocês, mas o apagamento dos pacientes. Ainda há tempo para escolher como terminar."
+  },
+  {
+    name:"Coração da Mansão",
+    intro:"No núcleo, a voz finalmente se separa em duas perguntas: “Vocês querem silêncio ou testemunho?” Antes da escolha, as duas âncoras precisam concordar sobre os últimos cálculos e abrir o núcleo ao mesmo tempo.",
+    tags:["Verdade","Memória","Coragem","Descanso","Vínculo","Amanhecer"],
+    puzzles:[
+      ["A equação das duas âncoras","calc"],
+      ["O último endereço","grid"]
+    ],
+    items:["Metade clara do selo","Metade escura do selo"],
+    tool:"Selo das duas vozes",
+    sync:true,
+    after:"A saída está aberta. Encerrar o arquivo concede descanso às vozes; preservá-lo mantém as provas e suas memórias. Os dois precisam escolher o mesmo destino. A discordância reativa o ciclo."
+  }
 ];
-const clues={
- foyer_code: {
-  1:"No verso do retrato, alguém escreveu: <strong>“As duas primeiras cifras são 18.”</strong>",
-  2:"No bilhete queimado: <strong>“As duas últimas cifras são 42.”</strong> Uma anotação diz para unir as partes nessa ordem."
- },
- foyer_sync:{
-  1:"Há um botão de latão na coluna da esquerda. A inscrição diz: <strong>“Só duas mãos podem calar a casa.”</strong>",
-  2:"Você vê um botão de latão na coluna da direita. A inscrição repete: <strong>“Só duas mãos podem calar a casa.”</strong>"
- },
- library_riddle:{
-  1:"Na margem do livro: <strong>“Visto de noite, mas não sou sonho; tenho asas, mas não sou anjo.”</strong>",
-  2:"Na folha solta: <strong>“Meu nome começa como um corvo e termina como o som que ele faz.”</strong>"
- },
- library_atlas:{
-  1:"O mapa tem uma marca sob a mansão. A legenda está rasgada; você só consegue ler: <strong>“gire a chave de latão.”</strong>",
-  2:"No atlas, uma frase: <strong>“A casa tem um coração escondido sob a tinta azul.”</strong> O desenho sugere usar a chave encontrada no vestíbulo."
- },
- library_sync:{
-  1:"Uma estante tem um puxador com o símbolo de uma lua. O mecanismo range quando você o toca.",
-  2:"Outra estante tem um puxador com o símbolo de um sol. Uma linha no chão liga os dois mecanismos."
- },
- lab_sequence:{
-  1:"No monitor: <strong>“O pulso começa no 3. O segundo é um a mais; o terceiro volta ao 1; o último é o dobro do primeiro, menos dois.”</strong>",
-  2:"Na prancheta: <strong>“Siga a sequência do coração: 3, depois 4, depois 1. O último número é 2.”</strong>"
- },
- lab_choice:{
-  1:"O relatório revela que os testes tentavam copiar lembranças de duas pessoas. Há uma alavanca vermelha marcada <strong>APAGAR</strong>.",
-  2:"Um áudio descreve a verdade: <strong>“A mansão é uma simulação alimentada pelas memórias de vocês.”</strong> Há um comando azul: <strong>TRANSMITIR</strong>."
- }
+
+const ENDINGS = {
+  free: {
+    title: "Final 1 — Amanhecer",
+    text: "Vocês escolhem encerrar o arquivo. As vozes se despedem uma a uma, e a mansão se desfaz sem ruído. Os dois despertam lado a lado. Não restam cópias dos pacientes, mas seus nomes foram recuperados. Pela primeira vez em décadas, há silêncio."
+  },
+  keep: {
+    title: "Final 2 — As Testemunhas",
+    text: "Vocês preservam o arquivo e rompem o isolamento. Os dois despertam com os testemunhos intactos. A mansão deixa de ser uma prisão e se torna uma prova. As vozes continuam existindo, agora identificadas e ouvidas por quem está do lado de fora."
+  },
+  split: {
+    title: "Final 3 — O Novo Ciclo",
+    text: "As escolhas divergem. Incapaz de executar dois destinos incompatíveis, o núcleo restaura o isolamento. Os dois despertam novamente no átrio, sem lembrar da decisão. Desta vez, há uma frase nova no espelho: “Nós chegamos até o fim. Foi ali que paramos de ouvir.”"
+  }
 };
-const puzzleNames={
- foyer_code:"Trava do portão",foyer_sync:"Dois botões",
- library_riddle:"A charada do corvo",library_atlas:"O atlas oculto",library_sync:"As estantes gêmeas",
- lab_sequence:"Painel do coração",lab_choice:"O destino da mansão"
-};
-const hints={
- foyer_code:"Juntem as duas metades na ordem indicada: primeiro a pista do retrato, depois a do bilhete.",
- foyer_sync:"Cada pessoa precisa apertar seu botão com poucos segundos de diferença.",
- library_riddle:"A resposta é uma ave noturna que também dá nome a um som.",
- library_atlas:"A chave de latão está no inventário compartilhado; use-a no mapa.",
- library_sync:"Um jogador deve acionar a estante da lua e o outro a do sol, dentro de 5 segundos.",
- lab_sequence:"A sequência completa está dividida entre as duas pistas. Digitem os quatro números juntos, sem espaços.",
- lab_choice:"Não há resposta certa: conversem sobre a verdade que descobriram e escolham juntos um final."
-};
-function show(which){["home","lobby","game","ending"].forEach(id=>$(id).classList.toggle("hidden",id!==which))}
-function msg(text){$("gameMessage").textContent=text||""}
-function save(){if(state&&role==="host")try{localStorage.setItem(STORAGE,JSON.stringify({roomCode,state}))}catch(e){}}
-function loadSaved(){try{const x=JSON.parse(localStorage.getItem(STORAGE)||"null");return x&&x.state?x:null}catch(e){return null}}
-function newState(){return {version:1,room:0,solved:[],inventory:[],hints:3,startedAt:null,ended:null,sync:{},lastHint:"",choice:null,history:[]}}
-function broadcast(){if(role==="host"&&conn&&conn.open)try{conn.send({type:"state",state})}catch(e){}}
-function connectStatus(ok){$("connectionBadge").textContent=ok?"Conectados":"Reconectando…";$("lobbyStatus").textContent=ok?"O segundo jogador chegou. A mansão desperta…":"Aguardando conexão do segundo jogador…"}
-function startPeerHost(code){
- role="host";roomCode=code;state=(loadSaved()?.roomCode===code?loadSaved().state:newState());
- if(peer){try{peer.destroy()}catch(e){}}
- if(!window.Peer){$("homeMessage").textContent="Não foi possível carregar PeerJS. Verifique a internet e recarregue.";return}
- peer=new Peer("duasvozes-"+code.toLowerCase());
- peer.on("open",()=>{$("roomCode").textContent=code;$("lobbyStatus").textContent="Aguardando conexão do segundo jogador…";show("lobby")});
- peer.on("connection",c=>{if(conn&&conn.open){try{c.close()}catch(e){}return}conn=c;wireHost(c)});
- peer.on("disconnected",()=>{setTimeout(()=>{if(peer&&!peer.destroyed)try{peer.reconnect()}catch(e){}},1500)});
- peer.on("error",e=>{$("homeMessage").textContent="Conexão indisponível: "+(e.type==="unavailable-id"?"este código já está em uso; crie outra sala.":"tente novamente em alguns instantes.");});
+
+/* =========================================================
+   UTILITÁRIOS E ESTADO LOCAL
+   ========================================================= */
+
+const $ = id => document.getElementById(id);
+const root = $("app");
+
+const esc = value => String(value ?? "").replace(
+  /[&<>"']/g,
+  character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[character])
+);
+
+let role = 0;
+let code = "";
+let token = "";
+
+let peer = null;
+let link = null;
+let verified = false;
+
+let S = null;
+let pending = {};
+let outbox = [];
+let drafts = {};
+
+let saved = readSave();
+let storageOK = true;
+
+let lastHeard = 0;
+let lastBoot = 0;
+let connectingAt = 0;
+let snapshotAt = performance.now();
+let tickAt = performance.now();
+
+let lastLive = false;
+let newHost = false;
+let hostOffset = 0;
+let lastOutboxSend = 0;
+
+let toastTimer = 0;
+let typingTicket = 0;
+let typedScene = "";
+let networkText = "";
+
+function uid() {
+  if (crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+
+  const numbers = new Uint32Array(4);
+  crypto.getRandomValues(numbers);
+
+  return Array.from(
+    numbers,
+    number => number.toString(16)
+  ).join("-");
 }
-function wireHost(c){
- c.on("open",()=>{connectStatus(true);if(!state.startedAt&&!state.ended)state.startedAt=Date.now();c.send({type:"state",state});save();show(state.ended?"ending":"game");render();});
- c.on("data",packet=>{if(packet&&packet.type==="action")apply(packet.action,2)});
- c.on("close",()=>{connectStatus(false);msg("Conexão interrompida. Tentando restabelecer…")});
- c.on("error",()=>connectStatus(false));
+
+function randomCode() {
+  const numbers = new Uint32Array(4);
+  crypto.getRandomValues(numbers);
+
+  return Array.from(
+    numbers,
+    number => ALPHABET[number % ALPHABET.length]
+  ).join("");
 }
-function startPeerGuest(code){
- role="guest";roomCode=code;show("lobby");$("roomCode").textContent=code;$("lobbyStatus").textContent="Conectando à sala…";
- if(!window.Peer){$("homeMessage").textContent="Não foi possível carregar PeerJS. Verifique a internet e recarregue.";show("home");return}
- peer=new Peer();
- peer.on("open",()=>{connectGuest()});
- peer.on("disconnected",()=>{setTimeout(()=>{if(peer&&!peer.destroyed)try{peer.reconnect()}catch(e){}},1200)});
- peer.on("error",e=>{if(e.type!=="peer-unavailable")$("lobbyStatus").textContent="Conexão instável; tentando novamente…"});
- function connectGuest(){
-   if(!peer||peer.destroyed||conn&&conn.open)return;
-   conn=peer.connect("duasvozes-"+code.toLowerCase(),{reliable:true});
-   conn.on("open",()=>{connectStatus(true);$("lobbyStatus").textContent="Conectado. Sincronizando…"});
-   conn.on("data",packet=>{if(packet&&packet.type==="state"){state=packet.state;saveGuest();show(state.ended?"ending":"game");render()}});
-   conn.on("close",()=>{connectStatus(false);if(retryTimer)clearTimeout(retryTimer);retryTimer=setTimeout(connectGuest,1800)});
-   conn.on("error",()=>{if(retryTimer)clearTimeout(retryTimer);retryTimer=setTimeout(connectGuest,2500)});
- }
- window._connectGuest=connectGuest;
+
+function readSave() {
+  try {
+    const data = JSON.parse(
+      localStorage.getItem(SAVE_KEY) || "null"
+    );
+
+    if (
+      data &&
+      data.version === VERSION &&
+      [1, 2].includes(data.role) &&
+      /^[A-Z]{4}$/.test(data.code || "")
+    ) {
+      return data;
+    }
+  } catch (error) {
+    console.warn("Não foi possível ler o salvamento.", error);
+  }
+
+  return null;
 }
-function saveGuest(){try{localStorage.setItem(STORAGE,JSON.stringify({roomCode,state}))}catch(e){}}
-function sendAction(action){if(role==="host")apply(action,1);else if(conn&&conn.open)conn.send({type:"action",action});else msg("Sem conexão — tentando reconectar.")}
-function apply(a,player){
- if(!state||state.ended)return;
- const now=Date.now();
- if(a.kind==="hint"){
-   if(state.hints<=0){msg("As três dicas já foram usadas.");return}
-   let key=rooms[state.room].puzzles.find(k=>!state.solved.includes(k));
-   state.hints--;state.lastHint=key?(hints[key]||"Conversem e comparem as pistas."):"Conversem sobre o final que desejam.";
-   msg("Dica revelada para os dois.");save();broadcast();render();return;
- }
- if(a.kind==="answer"){
-   const key=a.key, val=String(a.value||"").trim().toLowerCase().replace(/\s/g,"");
-   const expected={foyer_code:"1842",library_riddle:"corvo",lab_sequence:"3412"}[key];
-   if(expected&&val===expected){solve(key);msg("Correto. O mecanismo cede.");}
-   else msg("Isso não parece certo. Compare as pistas com o outro jogador.");
- }else if(a.kind==="use"){
-   if(a.key==="library_atlas"&&state.inventory.includes("Chave de latão")){solve(a.key);if(!state.inventory.includes("Cartão de acesso"))state.inventory.push("Cartão de acesso");msg("A chave abre um compartimento. Um cartão de acesso aparece no inventário.");}
-   else msg("Ainda falta algo. Verifiquem o inventário e as pistas.");
- }else if(a.kind==="sync"){
-   const k=a.key;
-   const prev=state.sync[k];
-   if(prev&&prev.player!==player&&now-prev.at<=5000){solve(k);delete state.sync[k];msg("Ao mesmo tempo! O mecanismo destrava.");}
-   else{state.sync[k]={player,at:now};msg("Ação registrada. O outro jogador precisa acionar o mecanismo em até 5 segundos.");setTimeout(()=>{if(state&&state.sync[k]&&Date.now()-state.sync[k].at>5000){delete state.sync[k];save();broadcast();render()}},5100)}
- }else if(a.kind==="choice"){
-   if(!state.solved.includes("lab_sequence")){msg("Ativem primeiro o painel do coração.");return}
-   state.choice=a.value;state.ended=a.value;save();broadcast();render();show("ending");return;
- }
- save();broadcast();render();
+
+function persist() {
+  if (!role) return;
+
+  const data = {
+    version: VERSION,
+    role,
+    code,
+    token,
+    state: S,
+    pending: role === 1 ? pending : {},
+    outbox: role === 2 ? outbox : [],
+    drafts
+  };
+
+  try {
+    localStorage.setItem(
+      SAVE_KEY,
+      JSON.stringify(data)
+    );
+
+    saved = data;
+  } catch (error) {
+    storageOK = false;
+  }
 }
-function solve(key){
- if(state.solved.includes(key))return;
- state.solved.push(key);
- if(key==="foyer_sync"&& !state.inventory.includes("Chave de latão"))state.inventory.push("Chave de latão");
- const current=rooms[state.room];
- if(current.puzzles.every(k=>state.solved.includes(k))){
-   if(state.room<rooms.length-1){state.room++;state.history.push("Sala liberada: "+rooms[state.room].name);state.lastHint="";msg("Uma passagem se abre. Vocês avançaram para "+rooms[state.room].name+".")}
-   else {state.history.push("O laboratório está sob controle.");}
- }
+
+function freshState() {
+  const numbers = new Uint32Array(1);
+  crypto.getRandomValues(numbers);
+
+  return {
+    v: VERSION,
+    game: uid(),
+    seed: numbers[0],
+    rev: 0,
+    room: 0,
+
+    started: false,
+    left: GAME_TIME,
+    running: false,
+
+    solved: {},
+    submitted: {},
+    found: [],
+    bag: [],
+    made: [],
+
+    sync: {},
+    votes: {},
+
+    hintsLeft: 3,
+    hints: [],
+
+    feedback: {},
+    end: null,
+    seen: [],
+    guestToken: null
+  };
 }
-function render(){
- if(!state)return;
- if(state.ended){renderEnding();return}
- if(state.startedAt&&Math.floor((Date.now()-state.startedAt)/1000)>=3600){state.ended="timeout";if(role==="host"){save();broadcast()}renderEnding();show("ending");return}
- $("roleBadge").textContent=role==="host"?"Jogador 1":"Jogador 2";
- $("roomCounter").textContent=`Sala ${Math.min(state.room+1,3)} de 3`;
- $("hintCount").textContent=`Dicas: ${state.hints}`;
- $("hintBtn").textContent=`Pedir uma dica (restam ${state.hints})`;
- $("hintBtn").disabled=state.hints<=0;
- $("inventory").innerHTML=state.inventory.length?state.inventory.map(x=>`<span class="item">${escapeHtml(x)}</span>`).join(""):'<span class="small">Ainda vazio</span>';
- $("lastHint").innerHTML=state.lastHint?`<span class="warning">Dica compartilhada:</span> ${escapeHtml(state.lastHint)}`:"";
- const r=rooms[state.room];
- $("gameContent").innerHTML=`<div class="card"><div class="roomhead"><div><div class="label">Local</div><h2>${r.name}</h2></div><div class="roomart">${r.icon}</div></div><p>${r.intro}</p><div class="clue"><strong>Sua pista • Jogador ${role==="host"?"1":"2"}:</strong> ${clues[r.puzzles.find(k=>!state.solved.includes(k))]?.[role==="host"?1:2]||"Compare as informações e escolham como prosseguir."}</div></div>`+r.puzzles.map(renderPuzzle).join("");
- $("gameContent").querySelectorAll("[data-submit]").forEach(btn=>btn.addEventListener("click",()=>{const key=btn.dataset.submit;const inp=$("input-"+key);sendAction({kind:"answer",key,value:inp?inp.value:""})}));
- $("gameContent").querySelectorAll("[data-use]").forEach(btn=>btn.addEventListener("click",()=>sendAction({kind:"use",key:btn.dataset.use})));
- $("gameContent").querySelectorAll("[data-sync]").forEach(btn=>btn.addEventListener("click",()=>sendAction({kind:"sync",key:btn.dataset.sync})));
- $("gameContent").querySelectorAll("[data-choice]").forEach(btn=>btn.addEventListener("click",()=>sendAction({kind:"choice",value:btn.dataset.choice})));
- $("gameContent").querySelectorAll("input").forEach(inp=>inp.addEventListener("keydown",e=>{if(e.key==="Enter")$(`button[data-submit="${inp.id.slice(6)}"]`).click()}));
- save();if(role==="host")broadcast();
+
+function toast(message) {
+  if (!message) return;
+
+  clearTimeout(toastTimer);
+
+  $("toast").textContent = message;
+  $("toast").classList.add("show");
+
+  toastTimer = setTimeout(() => {
+    $("toast").classList.remove("show");
+  }, 4200);
 }
-function renderPuzzle(key){
- const done=state.solved.includes(key), clue=clues[key][role==="host"?1:2];
- let control="";
- if(key==="foyer_code")control=`<div class="puzzle-controls"><input id="input-${key}" inputmode="numeric" maxlength="4" placeholder="Código de 4 dígitos"><button data-submit="${key}">Testar</button></div>`;
- if(key==="foyer_sync")control=`<p class="small">Cada jogador aciona o botão do próprio lado; o segundo toque deve ocorrer em até 5 segundos.</p><button data-sync="${key}">Acionar meu botão</button>`;
- if(key==="library_riddle")control=`<div class="puzzle-controls"><input id="input-${key}" maxlength="18" placeholder="Resposta"><button data-submit="${key}">Responder</button></div>`;
- if(key==="library_atlas")control=`<p class="small">Use a chave de latão compartilhada para abrir o compartimento.</p><button data-use="${key}" ${!state.inventory.includes("Chave de latão")?"disabled":""}>Usar chave no atlas</button>`;
- if(key==="library_sync")control=`<p class="small">Uma pessoa toca a estante da lua; a outra, a do sol. Façam isso em até 5 segundos.</p><button data-sync="${key}">Puxar meu mecanismo</button>`;
- if(key==="lab_sequence")control=`<div class="puzzle-controls"><input id="input-${key}" inputmode="numeric" maxlength="4" placeholder="Sequência de 4 números"><button data-submit="${key}">Ativar</button></div>`;
- if(key==="lab_choice")control=`<p class="small">A verdade está revelada. Conversem e escolham juntos — a decisão de qualquer jogador determina o desfecho.</p><div class="actions"><button class="danger" data-choice="burn">Queimar os arquivos e destruir a simulação</button><button data-choice="reveal">Transmitir a verdade ao mundo</button><button class="primary" data-choice="stay">Permanecer na mansão para salvar as memórias</button></div>`;
- return `<article class="puzzle"><h3>${escapeHtml(puzzleNames[key])} ${done?'<span class="solved">✓ Resolvido</span>':''}</h3><div class="clue"><strong>Sua pista:</strong> ${clue}</div>${done?'<p class="small safe">Resolvido pelos dois jogadores.</p>':control}</article>`;
+
+function online() {
+  return Boolean(
+    verified &&
+    link &&
+    link.open &&
+    Date.now() - lastHeard < 12000
+  );
 }
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function renderEnding(){
- clearInterval(clockTimer);
- const endings={
- burn:["Cinzas e silêncio","Vocês destroem o núcleo. A mansão desaba em luz branca; as memórias ficam livres, mas algumas lembranças de vocês desaparecem junto com os arquivos."],
- reveal:["A verdade atravessa a noite","A transmissão escapa para o mundo. Quando a porta se abre, equipes de resgate aguardam do lado de fora. A mansão não poderá esconder o que fez."],
- stay:["Dois guardiões","Vocês ficam para manter as memórias vivas. A porta se abre para um de vocês — mas, no corredor, a voz do outro ainda chama pelo seu nome."],
- timeout:["A casa fecha os olhos","Os sessenta minutos acabam. A mansão apaga as luzes, e duas novas fotografias aparecem no vestíbulo."]
- };
- let data=endings[state.ended]||endings.timeout;
- $("endingTitle").textContent=data[0];$("endingText").textContent=data[1];
- $("endingSub").textContent=state.ended==="timeout"?"O tempo terminou.":"Desfecho escolhido em conjunto — ou por quem conseguiu tocar no painel primeiro.";
- show("ending");
+
+function send(message) {
+  if (!link || !link.open) return false;
+
+  try {
+    link.send(message);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }
-function tick(){
- if(!state||!state.startedAt||state.ended)return;
- const left=Math.max(0,3600-Math.floor((Date.now()-state.startedAt)/1000));
- $("timer").textContent=`${String(Math.floor(left/60)).padStart(2,"0")}:${String(left%60).padStart(2,"0")}`;
- $("timer").classList.toggle("urgent",left<=300);
- if(left<=0&&role==="host"){state.ended="timeout";save();broadcast();renderEnding()}
+
+function publish(welcome = false) {
+  if (
+    role === 1 &&
+    S &&
+    verified &&
+    link &&
+    link.open
+  ) {
+    send({
+      type: "state",
+      v: VERSION,
+      welcome,
+      hostNow: Date.now(),
+      state: S
+    });
+  }
 }
-$("createBtn").addEventListener("click",()=>{
- const code=Array.from({length:4},()=>String.fromCharCode(65+Math.floor(Math.random()*26))).join("");
- $("homeMessage").textContent="";startPeerHost(code);
+
+function touch() {
+  if (!S) return;
+
+  S.rev++;
+  persist();
+  publish();
+  render();
+}
+
+function puzzleKey(slot) {
+  return `${S.room}:${slot}`;
+}
+
+function sceneReady() {
+  if (!S) return false;
+
+  const scene = SCENES[S.room];
+
+  return Boolean(
+    S.solved[`${S.room}:0`] &&
+    S.solved[`${S.room}:1`] &&
+    (
+      !scene.sync ||
+      S.sync[S.room]?.done
+    )
+  );
+}
+
+function puzzleAvailable(slot) {
+  if (!S) return false;
+  if (slot === 0) return true;
+
+  return Boolean(
+    S.solved[`${S.room}:0`] &&
+    S.bag.includes(SCENES[S.room].tool)
+  );
+}
+
+function activeDisabled() {
+  return (
+    !online() ||
+    Boolean(S?.end) ||
+    (role === 2 && outbox.length > 0)
+  );
+}
+
+function formatTime(milliseconds) {
+  const seconds = Math.max(
+    0,
+    Math.ceil(milliseconds / 1000)
+  );
+
+  const minutesPart = String(
+    Math.floor(seconds / 60)
+  ).padStart(2, "0");
+
+  const secondsPart = String(
+    seconds % 60
+  ).padStart(2, "0");
+
+  return `${minutesPart}:${secondsPart}`;
+}
+
+/* =========================================================
+   GERAÇÃO DETERMINÍSTICA DOS ENIGMAS
+   Cada sala usa uma semente da própria partida.
+   A resposta nunca é escrita nas pistas.
+   ========================================================= */
+
+function hash(text) {
+  let value = 2166136261;
+
+  for (const character of String(text)) {
+    value ^= character.charCodeAt(0);
+    value = Math.imul(value, 16777619);
+  }
+
+  return value >>> 0;
+}
+
+function rng(seed) {
+  let number = seed >>> 0;
+
+  return function () {
+    number = (number + 0x6D2B79F5) | 0;
+
+    let result = number;
+
+    result = Math.imul(
+      result ^ (result >>> 15),
+      result | 1
+    );
+
+    result ^= result + Math.imul(
+      result ^ (result >>> 7),
+      result | 61
+    );
+
+    return (
+      (result ^ (result >>> 14)) >>> 0
+    ) / 4294967296;
+  };
+}
+
+function shuffle(values, random) {
+  const result = values.slice();
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+
+    [result[i], result[j]] = [
+      result[j],
+      result[i]
+    ];
+  }
+
+  return result;
+}
+
+function buildPuzzle(room, slot) {
+  const scene = SCENES[room];
+  const specification = scene.puzzles[slot];
+
+  const random = rng(
+    hash(`${S.seed}|${room}|${slot}`)
+  );
+
+  const digits = shuffle(
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    random
+  ).slice(0, 6);
+
+  const measures = shuffle(
+    [13, 24, 35, 46, 57, 68, 79, 81],
+    random
+  ).slice(0, 6);
+
+  const names = shuffle(
+    scene.tags,
+    random
+  );
+
+  const rows = names.map((name, index) => ({
+    name,
+    digit: digits[index],
+    measure: measures[index]
+  }));
+
+  const picks = shuffle(
+    [0, 1, 2, 3, 4, 5],
+    random
+  ).slice(0, 4);
+
+  const puzzle = {
+    title: specification[0],
+    type: specification[1],
+    rows,
+    picks,
+    answer: ""
+  };
+
+  if (puzzle.type === "order") {
+    puzzle.answer = picks.map(
+      index => rows[index].digit
+    ).join("");
+  }
+
+  if (puzzle.type === "grid") {
+    puzzle.cells = shuffle(
+      [
+        0, 1, 2, 3,
+        4, 5, 6, 7,
+        8, 9, 0, 2,
+        4, 6, 8, 9
+      ],
+      random
+    );
+
+    puzzle.addresses = shuffle(
+      Array.from({length: 16}, (_, i) => i),
+      random
+    ).slice(0, 4);
+
+    puzzle.answer = puzzle.addresses.map(
+      address => puzzle.cells[address]
+    ).join("");
+  }
+
+  if (puzzle.type === "sort") {
+    puzzle.ascending = random() > 0.5;
+
+    const selected = picks.map(
+      index => rows[index]
+    );
+
+    selected.sort((a, b) => (
+      puzzle.ascending
+        ? a.measure - b.measure
+        : b.measure - a.measure
+    ));
+
+    puzzle.answer = selected.map(
+      row => row.digit
+    ).join("");
+  }
+
+  if (puzzle.type === "calc") {
+    puzzle.operations = [];
+
+    for (let i = 0; i < 4; i++) {
+      const pair = shuffle(
+        [0, 1, 2, 3, 4, 5],
+        random
+      ).slice(0, 2);
+
+      puzzle.operations.push({
+        a: pair[0],
+        b: pair[1],
+        operation: Math.floor(random() * 4)
+      });
+    }
+
+    puzzle.answer = puzzle.operations.map(entry => {
+      const a = rows[entry.a].digit;
+      const b = rows[entry.b].digit;
+
+      let result;
+
+      if (entry.operation === 0) result = a + b;
+      if (entry.operation === 1) result = Math.abs(a - b);
+      if (entry.operation === 2) result = a * b;
+      if (entry.operation === 3) result = a + 2 * b;
+
+      return result % 10;
+    }).join("");
+  }
+
+  if (puzzle.type === "compare") {
+    puzzle.comparisons = [];
+
+    for (let i = 0; i < 4; i++) {
+      const pair = shuffle(
+        [0, 1, 2, 3, 4, 5],
+        random
+      ).slice(0, 2);
+
+      puzzle.comparisons.push({
+        a: pair[0],
+        b: pair[1],
+        high: random() > 0.5
+      });
+    }
+
+    puzzle.answer = puzzle.comparisons.map(entry => {
+      const a = rows[entry.a].digit;
+      const b = rows[entry.b].digit;
+
+      return entry.high
+        ? Math.max(a, b)
+        : Math.min(a, b);
+    }).join("");
+  }
+
+  if (!/^\d{4}$/.test(puzzle.answer)) {
+    throw new Error(
+      `Enigma inválido na cena ${room}, posição ${slot}.`
+    );
+  }
+
+  return puzzle;
+}
+
+function clueMarkup(puzzle) {
+  /*
+    Somente o bloco correspondente ao papel local
+    é inserido no HTML da tela.
+  */
+
+  if (role === 1) {
+    if (puzzle.type === "grid") {
+      let table = `
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th></th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      for (let row = 0; row < 4; row++) {
+        table += `
+          <tr>
+            <th>${"ABCD"[row]}</th>
+            ${[0, 1, 2, 3].map(column => `
+              <td>${puzzle.cells[row * 4 + column]}</td>
+            `).join("")}
+          </tr>
+        `;
+      }
+
+      table += "</tbody></table>";
+
+      return `
+        <div class="clue">
+          <h4>Seu mapa</h4>
+          <p>
+            Você enxerga os valores, mas não sabe
+            quais posições devem ser consultadas.
+            A outra pessoa tem os endereços.
+          </p>
+          ${table}
+        </div>
+      `;
+    }
+
+    return `
+      <div class="clue">
+        <h4>Sua tabela</h4>
+        <p>
+          Você tem os dados, mas não tem a regra
+          que escolhe ou organiza esses dados.
+          Peça a instrução da outra pessoa.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Marca</th>
+              <th>Algarismo</th>
+              ${
+                puzzle.type === "sort"
+                  ? "<th>Medida</th>"
+                  : ""
+              }
+            </tr>
+          </thead>
+
+          <tbody>
+            ${puzzle.rows.map(row => `
+              <tr>
+                <td>${esc(row.name)}</td>
+                <td>${row.digit}</td>
+                ${
+                  puzzle.type === "sort"
+                    ? `<td>${row.measure}</td>`
+                    : ""
+                }
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  if (puzzle.type === "order") {
+    return `
+      <div class="clue rule">
+        <h4>Sua instrução</h4>
+        <p>
+          A outra pessoa tem os algarismos.
+          Peça o valor de cada marca nesta ordem:
+        </p>
+
+        <ol>
+          ${puzzle.picks.map(index => `
+            <li>${esc(puzzle.rows[index].name)}</li>
+          `).join("")}
+        </ol>
+
+        <p>
+          Juntem os quatro algarismos na ordem acima.
+          Não ordenem pelos valores.
+        </p>
+      </div>
+    `;
+  }
+
+  if (puzzle.type === "grid") {
+    return `
+      <div class="clue rule">
+        <h4>Seus endereços</h4>
+        <p>
+          A outra pessoa enxerga a matriz.
+          Consulte estas posições na ordem:
+        </p>
+
+        <ol>
+          ${puzzle.addresses.map(address => {
+            const row = "ABCD"[Math.floor(address / 4)];
+            const column = address % 4 + 1;
+
+            return `<li>Linha ${row}, coluna ${column}</li>`;
+          }).join("")}
+        </ol>
+
+        <p>
+          A letra identifica a linha.
+          O número identifica a coluna.
+          O código usa o conteúdo das células,
+          não os números dos endereços.
+        </p>
+      </div>
+    `;
+  }
+
+  if (puzzle.type === "sort") {
+    return `
+      <div class="clue rule">
+        <h4>Sua seleção</h4>
+
+        <p>Usem somente estas quatro marcas:</p>
+
+        <ul>
+          ${puzzle.picks.map(index => `
+            <li>${esc(puzzle.rows[index].name)}</li>
+          `).join("")}
+        </ul>
+
+        <p>
+          Ordenem as marcas pela
+          <strong>MEDIDA</strong>,
+          da
+          <strong>
+            ${
+              puzzle.ascending
+                ? "MENOR para a MAIOR"
+                : "MAIOR para a MENOR"
+            }
+          </strong>.
+        </p>
+
+        <p>
+          Depois leiam os <strong>algarismos</strong>
+          nessa ordem. A medida serve apenas para
+          ordenar; não faz parte do código.
+        </p>
+      </div>
+    `;
+  }
+
+  if (puzzle.type === "calc") {
+    const steps = puzzle.operations.map(entry => {
+      const a = esc(puzzle.rows[entry.a].name);
+      const b = esc(puzzle.rows[entry.b].name);
+
+      let instruction = "";
+
+      if (entry.operation === 0) {
+        instruction = `${a} + ${b}`;
+      }
+
+      if (entry.operation === 1) {
+        instruction = `
+          Diferença entre ${a} e ${b},
+          sempre positiva ou zero
+        `;
+      }
+
+      if (entry.operation === 2) {
+        instruction = `${a} × ${b}`;
+      }
+
+      if (entry.operation === 3) {
+        instruction = `${a} + duas vezes ${b}`;
+      }
+
+      return `<li>${instruction}</li>`;
+    }).join("");
+
+    return `
+      <div class="clue rule">
+        <h4>Seu protocolo</h4>
+
+        <p>
+          A outra pessoa possui os valores das marcas.
+          Calculem um algarismo para cada etapa:
+        </p>
+
+        <ol>${steps}</ol>
+
+        <p>
+          Se o resultado tiver mais de um algarismo,
+          guardem somente o último.
+          Juntem os quatro resultados na ordem.
+        </p>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="clue rule">
+      <h4>Suas comparações</h4>
+
+      <p>
+        Peça os valores à outra pessoa.
+        Cada comparação fornece um algarismo:
+      </p>
+
+      <ol>
+        ${puzzle.comparisons.map(entry => `
+          <li>
+            Entre
+            <strong>${esc(puzzle.rows[entry.a].name)}</strong>
+            e
+            <strong>${esc(puzzle.rows[entry.b].name)}</strong>,
+            escolha o
+            <strong>${entry.high ? "MAIOR" : "MENOR"}</strong>
+            valor.
+          </li>
+        `).join("")}
+      </ol>
+
+      <p>Juntem os valores escolhidos na ordem das etapas.</p>
+    </div>
+  `;
+}
+
+/* =========================================================
+   DICAS: EXPLICAM O MÉTODO, NÃO REVELAM A RESPOSTA
+   ========================================================= */
+
+function currentHint() {
+  const scene = SCENES[S.room];
+
+  if (sceneReady()) {
+    return null;
+  }
+
+  if (
+    S.solved[`${S.room}:0`] &&
+    !S.bag.includes(scene.tool)
+  ) {
+    return (
+      "Cada pessoa precisa recolher seu objeto. " +
+      "Quando os dois estiverem no inventário, " +
+      "usem Combinar objetos. O objeto montado " +
+      "libera a segunda pista."
+    );
+  }
+
+  if (
+    S.solved[`${S.room}:0`] &&
+    S.solved[`${S.room}:1`] &&
+    scene.sync
+  ) {
+    return (
+      "Combinem uma contagem por voz. " +
+      "Cada pessoa precisa tocar no próprio botão. " +
+      "O segundo toque deve chegar em até cinco " +
+      "segundos após o primeiro."
+    );
+  }
+
+  const slot = S.solved[`${S.room}:0`] ? 1 : 0;
+  const type = scene.puzzles[slot][1];
+
+  const hints = {
+    order:
+      "A ordem vem da tela do jogador 2. " +
+      "Os valores vêm da tabela do jogador 1. " +
+      "Para cada marca ditada, anotem um algarismo.",
+
+    grid:
+      "O jogador 2 dita uma coordenada por vez. " +
+      "O jogador 1 cruza a linha com a coluna " +
+      "e responde com o conteúdo da célula.",
+
+    sort:
+      "Primeiro excluam as marcas que não foram " +
+      "selecionadas. Ordenem as restantes pela " +
+      "medida, no sentido indicado. Só depois " +
+      "leiam a coluna dos algarismos.",
+
+    calc:
+      "Trabalhem uma expressão por vez. " +
+      "Substituam as marcas pelos valores da tabela. " +
+      "De cada resultado, conservem apenas " +
+      "o algarismo das unidades.",
+
+    compare:
+      "Leiam cada par em voz alta. " +
+      "A pessoa com a tabela informa os dois valores. " +
+      "A outra confirma se a etapa pede o maior " +
+      "ou o menor."
+  };
+
+  return hints[type];
+}
+
+/* =========================================================
+   AÇÕES E VALIDAÇÃO AUTORITATIVA DO CRIADOR
+   ========================================================= */
+
+function mutateAction(action, player) {
+  const scene = SCENES[S.room];
+
+  if (action.kind === "look") {
+    const marker = `${S.room}:${player}`;
+
+    if (S.found.includes(marker)) {
+      return "Você já recolheu seu objeto nesta cena.";
+    }
+
+    S.found.push(marker);
+    S.bag.push(scene.items[player - 1]);
+
+    return "Objeto adicionado ao inventário dos dois.";
+  }
+
+  if (action.kind === "craft") {
+    if (S.made.includes(S.room)) {
+      return "O objeto desta cena já foi combinado.";
+    }
+
+    if (!scene.items.every(item => S.bag.includes(item))) {
+      return "Ainda falta uma pessoa recolher seu objeto.";
+    }
+
+    S.bag = S.bag.filter(
+      item => !scene.items.includes(item)
+    );
+
+    S.bag.push(scene.tool);
+    S.made.push(S.room);
+
+    return `${scene.tool}: objeto montado e compartilhado.`;
+  }
+
+  if (action.kind === "submit") {
+    const slot = Number(action.slot);
+
+    if (![0, 1].includes(slot)) {
+      return "Enigma inválido.";
+    }
+
+    if (!puzzleAvailable(slot)) {
+      return "Este enigma ainda está bloqueado.";
+    }
+
+    const key = puzzleKey(slot);
+
+    if (S.solved[key]) {
+      return "Este enigma já foi resolvido.";
+    }
+
+    const value = String(action.value || "");
+
+    if (!/^\d{4}$/.test(value)) {
+      return "Digite exatamente quatro algarismos.";
+    }
+
+    pending[key] ||= {};
+    S.submitted[key] ||= {};
+
+    if (pending[key][player] !== undefined) {
+      return "Seu selo já foi enviado. Retire-o para alterar.";
+    }
+
+    pending[key][player] = value;
+    S.submitted[key][player] = true;
+
+    delete S.feedback[key];
+
+    const bothSubmitted = (
+      pending[key][1] !== undefined &&
+      pending[key][2] !== undefined
+    );
+
+    if (!bothSubmitted) {
+      return "Selo guardado. Aguardando a outra pessoa.";
+    }
+
+    const puzzle = buildPuzzle(S.room, slot);
+
+    const correct = (
+      pending[key][1] === puzzle.answer &&
+      pending[key][2] === puzzle.answer
+    );
+
+    delete pending[key];
+    S.submitted[key] = {};
+
+    if (correct) {
+      S.solved[key] = true;
+      delete S.feedback[key];
+
+      return "Os dois selos foram aceitos!";
+    }
+
+    S.feedback[key] = (
+      "Os selos foram recusados. Confiram a composição " +
+      "das duas pistas e enviem novamente. " +
+      "O sistema não revela qual pessoa errou."
+    );
+
+    return "Tentativa recusada. Revisem as duas pistas.";
+  }
+
+  if (action.kind === "withdraw") {
+    const slot = Number(action.slot);
+
+    if (![0, 1].includes(slot)) {
+      return "Enigma inválido.";
+    }
+
+    const key = puzzleKey(slot);
+
+    if (S.solved[key]) {
+      return "O enigma já foi concluído.";
+    }
+
+    if (pending[key]) {
+      delete pending[key][player];
+    }
+
+    if (S.submitted[key]) {
+      delete S.submitted[key][player];
+    }
+
+    return "Seu selo foi retirado. Você pode alterar a resposta.";
+  }
+
+  if (action.kind === "hint") {
+    if (S.hintsLeft <= 0) {
+      return "As três dicas já foram utilizadas.";
+    }
+
+    const text = currentHint();
+
+    if (!text) {
+      return "Esta cena já está liberada. Vocês podem avançar.";
+    }
+
+    S.hintsLeft--;
+
+    S.hints.push({
+      room: S.room,
+      text
+    });
+
+    return "Dica compartilhada com os dois jogadores.";
+  }
+
+  if (action.kind === "sync") {
+    if (
+      !scene.sync ||
+      !S.solved[`${S.room}:0`] ||
+      !S.solved[`${S.room}:1`]
+    ) {
+      return "Resolvam os dois enigmas antes de acionar o mecanismo.";
+    }
+
+    const mechanism = S.sync[S.room] ||= {
+      done: false,
+      first: null
+    };
+
+    if (mechanism.done) {
+      return "O mecanismo já foi aberto.";
+    }
+
+    const now = Date.now();
+
+    if (
+      mechanism.first &&
+      now - mechanism.first.at > 5000
+    ) {
+      mechanism.first = null;
+    }
+
+    if (!mechanism.first) {
+      mechanism.first = {
+        player,
+        at: now
+      };
+
+      delete S.feedback[`sync:${S.room}`];
+
+      return "Primeiro acionamento recebido. A outra pessoa tem cinco segundos!";
+    }
+
+    if (mechanism.first.player === player) {
+      return "Agora a outra pessoa precisa tocar no botão dela.";
+    }
+
+    mechanism.done = true;
+    mechanism.first = null;
+
+    delete S.feedback[`sync:${S.room}`];
+
+    return "Sincronização concluída pelas duas vozes!";
+  }
+
+  if (action.kind === "advance") {
+    if (!sceneReady()) {
+      return "Ainda existem mecanismos pendentes nesta cena.";
+    }
+
+    if (S.room >= SCENES.length - 1) {
+      return "Vocês chegaram à decisão final.";
+    }
+
+    S.room++;
+    pending = {};
+
+    return `Cena ${S.room + 1}: ${SCENES[S.room].name}.`;
+  }
+
+  if (action.kind === "vote") {
+    if (
+      S.room !== SCENES.length - 1 ||
+      !sceneReady()
+    ) {
+      return "A decisão final ainda não foi liberada.";
+    }
+
+    if (!["free", "keep"].includes(action.choice)) {
+      return "Escolha inválida.";
+    }
+
+    S.votes[player] = action.choice;
+
+    if (S.votes[1] && S.votes[2]) {
+      const kind = (
+        S.votes[1] === S.votes[2]
+          ? S.votes[1]
+          : "split"
+      );
+
+      S.end = {
+        kind,
+        at: Date.now()
+      };
+
+      S.running = false;
+
+      return "As duas escolhas foram registradas.";
+    }
+
+    return "Sua escolha foi selada. Aguardando a outra pessoa.";
+  }
+
+  return "Ação desconhecida.";
+}
+  function applyAction(action, player) {
+  if (!S || role !== 1) return "";
+
+  if (
+    !action ||
+    typeof action.id !== "string" ||
+    action.game !== S.game
+  ) {
+    return "Esta ação não pertence à partida atual.";
+  }
+
+  if (S.seen.includes(action.id)) {
+    return "";
+  }
+
+  S.seen.push(action.id);
+
+  if (S.seen.length > 300) {
+    S.seen.splice(0, S.seen.length - 300);
+  }
+
+  let message;
+
+  if (S.end) {
+    message = "Esta partida já terminou.";
+  } else if (
+    !S.started ||
+    !online()
+  ) {
+    message = "Aguardem a reconexão dos dois jogadores.";
+  } else if (action.room !== S.room) {
+    message = "A cena mudou. A ação antiga foi descartada.";
+  } else {
+    message = mutateAction(action, player);
+  }
+
+  touch();
+
+  return message;
+}
+
+function sendAction(kind, extra = {}) {
+  if (!S || activeDisabled()) {
+    toast("Aguardem a conexão antes de continuar.");
+    return;
+  }
+
+  const action = {
+    id: uid(),
+    game: S.game,
+    room: S.room,
+    kind,
+    ...extra
+  };
+
+  if (role === 1) {
+    toast(applyAction(action, 1));
+    return;
+  }
+
+  outbox.push(action);
+  persist();
+  flushOutbox();
+  render();
+}
+
+function flushOutbox() {
+  if (
+    role !== 2 ||
+    !online() ||
+    !outbox.length
+  ) {
+    return;
+  }
+
+  lastOutboxSend = Date.now();
+
+  for (const action of outbox) {
+    send({
+      type: "action",
+      action
+    });
+  }
+}
+
+/* =========================================================
+   CONEXÃO, IDENTIFICAÇÃO E RECONEXÃO
+   ========================================================= */
+
+function stopNetwork() {
+  const previousPeer = peer;
+  const previousLink = link;
+
+  peer = null;
+  link = null;
+  verified = false;
+  lastHeard = 0;
+
+  try {
+    previousLink?.close();
+  } catch (error) {}
+
+  try {
+    previousPeer?.destroy();
+  } catch (error) {}
+}
+
+function rejectConnection(connection, message) {
+  try {
+    connection.send({
+      type: "reject",
+      message
+    });
+  } catch (error) {}
+
+  setTimeout(() => {
+    try {
+      connection.close();
+    } catch (error) {}
+  }, 300);
+}
+
+function acceptIncoming(connection) {
+  if (role !== 1 || !S) {
+    connection.close();
+    return;
+  }
+
+  let accepted = false;
+
+  const handshakeTimeout = setTimeout(() => {
+    if (!accepted) {
+      try {
+        connection.close();
+      } catch (error) {}
+    }
+  }, 12000);
+
+  connection.on("data", message => {
+    if (!message || typeof message !== "object") return;
+
+    if (message.type === "hello") {
+      if (accepted) return;
+
+      if (
+        message.v !== VERSION ||
+        typeof message.token !== "string" ||
+        message.token.length < 10 ||
+        message.token.length > 120
+      ) {
+        rejectConnection(
+          connection,
+          "As versões do jogo são diferentes. Atualizem os dois celulares."
+        );
+        return;
+      }
+
+      if (
+        S.guestToken &&
+        S.guestToken !== message.token
+      ) {
+        rejectConnection(
+          connection,
+          "Esta sala já tem um segundo jogador. No celular original, use Continuar sala."
+        );
+        return;
+      }
+
+      accepted = true;
+      clearTimeout(handshakeTimeout);
+
+      S.guestToken = message.token;
+
+      const previousLink = link;
+
+      link = connection;
+      verified = true;
+      lastHeard = Date.now();
+
+      if (
+        previousLink &&
+        previousLink !== connection
+      ) {
+        try {
+          previousLink.close();
+        } catch (error) {}
+      }
+
+      S.started = true;
+      S.rev++;
+
+      networkText = "";
+      persist();
+      publish(true);
+      render();
+
+      return;
+    }
+
+    if (
+      !accepted ||
+      link !== connection ||
+      !verified
+    ) {
+      return;
+    }
+
+    lastHeard = Date.now();
+
+    if (message.type === "beat") {
+      send({type: "pong"});
+    }
+
+    if (message.type === "action") {
+      const result = applyAction(
+        message.action,
+        2
+      );
+
+      send({
+        type: "ack",
+        id: message.action?.id,
+        message: result
+      });
+    }
+
+    if (message.type === "leaving") {
+      verified = false;
+
+      if (S.running) {
+        S.running = false;
+        touch();
+      }
+
+      render();
+    }
+  });
+
+  connection.on("close", () => {
+    clearTimeout(handshakeTimeout);
+
+    if (link === connection) {
+      verified = false;
+      networkText = "A outra pessoa desconectou. Aguardando reconexão.";
+      render();
+    }
+  });
+
+  connection.on("error", () => {
+    if (link === connection) {
+      verified = false;
+      networkText = "Conexão interrompida. Reconectando.";
+      render();
+    }
+  });
+}
+
+function receiveGuestMessage(connection, message) {
+  if (
+    link !== connection ||
+    !message ||
+    typeof message !== "object"
+  ) {
+    return;
+  }
+
+  lastHeard = Date.now();
+
+  if (message.type === "reject") {
+    verified = false;
+    networkText = message.message || "Conexão recusada.";
+    toast(networkText);
+    render();
+    return;
+  }
+
+  if (message.type === "beat") {
+    send({type: "pong"});
+    return;
+  }
+
+  if (message.type === "state") {
+    if (
+      message.v !== VERSION ||
+      !message.state ||
+      message.state.v !== VERSION
+    ) {
+      verified = false;
+      networkText = "Versão incompatível. Atualizem as duas páginas.";
+      render();
+      return;
+    }
+
+    const previousRevision = S?.rev;
+    const previousGame = S?.game;
+    const wasVerified = verified;
+
+    S = message.state;
+    verified = true;
+
+    snapshotAt = performance.now();
+
+    if (Number.isFinite(message.hostNow)) {
+      hostOffset = message.hostNow - Date.now();
+    }
+
+    networkText = "";
+
+    outbox = outbox.filter(
+      action => action.game === S.game
+    );
+
+    persist();
+
+    if (
+      !wasVerified ||
+      previousRevision !== S.rev ||
+      previousGame !== S.game ||
+      message.welcome
+    ) {
+      render();
+    }
+
+    updateHUD();
+
+    if (message.welcome || !wasVerified) {
+      flushOutbox();
+    }
+
+    return;
+  }
+
+  if (message.type === "ack") {
+    outbox = outbox.filter(
+      action => action.id !== message.id
+    );
+
+    persist();
+    toast(message.message);
+    render();
+    return;
+  }
+
+  if (message.type === "leaving") {
+    verified = false;
+    networkText = "O criador saiu. O progresso foi mantido.";
+    render();
+  }
+}
+
+function connectGuest() {
+  if (
+    role !== 2 ||
+    !peer ||
+    !peer.open ||
+    online()
+  ) {
+    return;
+  }
+
+  connectingAt = Date.now();
+
+  const previousLink = link;
+
+  link = null;
+  verified = false;
+
+  try {
+    previousLink?.close();
+  } catch (error) {}
+
+  let connection;
+
+  try {
+    connection = peer.connect(
+      PREFIX + code,
+      {
+        reliable: true,
+        serialization: "json"
+      }
+    );
+  } catch (error) {
+    networkText = "Não foi possível conectar. Tentando novamente.";
+    render();
+    return;
+  }
+
+  link = connection;
+  networkText = "Procurando a sala…";
+  render();
+
+  connection.on("open", () => {
+    if (link !== connection) return;
+
+    lastHeard = Date.now();
+
+    try {
+      connection.send({
+        type: "hello",
+        v: VERSION,
+        token
+      });
+    } catch (error) {}
+  });
+
+  connection.on("data", message => {
+    receiveGuestMessage(
+      connection,
+      message
+    );
+  });
+
+  connection.on("close", () => {
+    if (link !== connection) return;
+
+    verified = false;
+    networkText = "Conexão perdida. Tentando reconectar.";
+    render();
+  });
+
+  connection.on("error", () => {
+    if (link !== connection) return;
+
+    verified = false;
+    connectingAt = Date.now() - 8000;
+    networkText = "Sala indisponível no momento. Tentando novamente.";
+    render();
+  });
+}
+
+function bootPeer() {
+  if (!role) return;
+
+  if (typeof Peer === "undefined") {
+    networkText = (
+      "O PeerJS não carregou. Verifique a internet " +
+      "e atualize a página."
+    );
+
+    render();
+    return;
+  }
+
+  lastBoot = Date.now();
+
+  let instance;
+
+  try {
+    instance = role === 1
+      ? new Peer(PREFIX + code, {debug: 0})
+      : new Peer({debug: 0});
+  } catch (error) {
+    networkText = "Não foi possível iniciar a conexão.";
+    render();
+    return;
+  }
+
+  peer = instance;
+
+  instance.on("open", () => {
+    if (peer !== instance) return;
+
+    networkText = role === 1
+      ? "Sala pronta. Aguardando a outra pessoa."
+      : "Conectando à sala…";
+
+    persist();
+    render();
+
+    if (role === 2) {
+      connectGuest();
+  }
+      });
+
+  instance.on("connection", connection => {
+    if (
+      peer !== instance ||
+      role !== 1
+    ) {
+      connection.close();
+      return;
+    }
+
+    acceptIncoming(connection);
+  });
+
+  instance.on("disconnected", () => {
+    if (peer !== instance) return;
+
+    networkText = "Reconectando ao serviço de sinalização.";
+
+    if (!online()) {
+      render();
+    }
+  });
+
+  instance.on("close", () => {
+    if (peer !== instance) return;
+
+    verified = false;
+    networkText = "Restabelecendo a conexão.";
+    render();
+  });
+
+  instance.on("error", error => {
+    if (peer !== instance) return;
+
+    if (
+      error.type === "unavailable-id" &&
+      role === 1
+    ) {
+      if (
+        newHost &&
+        S &&
+        !S.started &&
+        !S.guestToken
+      ) {
+        code = randomCode();
+        networkText = "Ajustando o código da nova sala.";
+        persist();
+      } else {
+        networkText = (
+          "Aguardando a liberação do código da sala. " +
+          "O progresso está salvo."
+        );
+      }
+
+      peer = null;
+
+      try {
+        instance.destroy();
+      } catch (ignored) {}
+
+      render();
+      return;
+    }
+
+    if (error.type === "peer-unavailable") {
+      networkText = (
+        "A sala ainda não está disponível. " +
+        "Confirme que o criador está com a página aberta."
+      );
+
+      if (!online()) {
+        connectingAt = Date.now() - 8000;
+      }
+    } else {
+      networkText = "Oscilação de rede. Tentando recuperar a conexão.";
+    }
+
+    if (!online()) {
+      render();
+    }
+  });
+}
+
+/* =========================================================
+   INICIAR, RETOMAR E VOLTAR AO MENU
+   ========================================================= */
+
+function beginSession(nextRole, roomCode = "") {
+  if (
+    saved &&
+    !confirm(
+      "Iniciar outra sala substituirá o salvamento " +
+      "desta versão neste celular. Continuar?"
+    )
+  ) {
+    return;
+  }
+
+  stopNetwork();
+
+  role = nextRole;
+  code = nextRole === 1
+    ? randomCode()
+    : roomCode.toUpperCase();
+
+  token = uid();
+
+  S = nextRole === 1
+    ? freshState()
+    : null;
+
+  pending = {};
+  outbox = [];
+  drafts = {};
+
+  newHost = nextRole === 1;
+  networkText = "Iniciando conexão…";
+
+  hostOffset = 0;
+  connectingAt = 0;
+  lastBoot = 0;
+  lastLive = false;
+  typedScene = "";
+
+  snapshotAt = performance.now();
+  tickAt = performance.now();
+
+  persist();
+  render();
+  bootPeer();
+}
+
+function resumeSession() {
+  const data = readSave();
+
+  if (!data) {
+    toast("Não há uma sala salva nesta versão.");
+    return;
+  }
+
+  stopNetwork();
+
+  role = data.role;
+  code = data.code;
+  token = data.token || uid();
+
+  S = (
+    data.state &&
+    data.state.v === VERSION
+  )
+    ? data.state
+    : (role === 1 ? freshState() : null);
+
+  pending = role === 1
+    ? (data.pending || {})
+    : {};
+
+  outbox = role === 2
+    ? (data.outbox || [])
+    : [];
+
+  drafts = data.drafts || {};
+
+  if (S) {
+    S.running = false;
+  }
+
+  /*
+    Garante que os selos exibidos correspondam
+    às respostas realmente preservadas no criador.
+  */
+  if (role === 1 && S) {
+    for (const key of Object.keys(S.submitted)) {
+      S.submitted[key] = {
+        1: pending[key]?.[1] !== undefined,
+        2: pending[key]?.[2] !== undefined
+      };
+    }
+  }
+
+  newHost = false;
+  hostOffset = 0;
+  connectingAt = 0;
+  lastBoot = 0;
+  lastLive = false;
+  typedScene = "";
+
+  networkText = "Recuperando a sala e o progresso.";
+
+  snapshotAt = performance.now();
+  tickAt = performance.now();
+
+  persist();
+  render();
+  bootPeer();
+}
+
+function returnHome() {
+  if (
+    role &&
+    !confirm(
+      "Voltar ao menu? O progresso ficará salvo " +
+      "neste navegador."
+    )
+  ) {
+    return;
+  }
+
+  if (S) {
+    S.running = false;
+  }
+
+  send({type: "leaving"});
+
+  if (role === 1) {
+    publish();
+  }
+
+  persist();
+  stopNetwork();
+
+  role = 0;
+  S = null;
+  pending = {};
+  outbox = [];
+  drafts = {};
+  networkText = "";
+
+  saved = readSave();
+
+  render();
+}
+
+async function copyCode() {
+  try {
+    await navigator.clipboard.writeText(code);
+    toast("Código copiado.");
+  } catch (error) {
+    window.prompt("Copie o código da sala:", code);
+  }
+}
+
+/* =========================================================
+   INTERFACE
+   ========================================================= */
+
+function homeMarkup() {
+  const resumeButton = saved
+    ? `
+      <button
+        type="button"
+        class="primary"
+        data-action="resume"
+      >
+        Continuar sala ${esc(saved.code)}
+      </button>
+    `
+    : "";
+
+  return `
+    <section class="hero">
+      <p class="eyebrow">Arquivo 13 · fuga cooperativa</p>
+      <h1>A Mansão das<br>Duas Vozes</h1>
+
+      <p class="muted">
+        Duas telas. Informações incompletas.
+        Uma saída que exige as duas pessoas.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Entrem juntos</h2>
+
+      <div class="stack">
+        ${resumeButton}
+
+        <button
+          type="button"
+          class="${saved ? "" : "primary"}"
+          data-action="create"
+        >
+          Criar sala
+        </button>
+      </div>
+
+      <form id="joinForm" class="stack" style="margin-top:20px">
+        <label for="joinCode">Código de quatro letras</label>
+
+        <input
+          id="joinCode"
+          class="code"
+          data-draft="join"
+          value="${esc(drafts.join || "")}"
+          maxlength="4"
+          autocomplete="off"
+          autocapitalize="characters"
+          spellcheck="false"
+          placeholder="ABCD"
+          required
+        >
+
+        <button type="submit">Entrar na sala</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h3>Como jogar</h3>
+
+      <ol>
+        <li>
+          Uma pessoa cria a sala e envia o código.
+          A outra entra usando o próprio celular.
+        </li>
+        <li>
+          O jogador 1 recebe tabelas e mapas.
+          O jogador 2 recebe regras e coordenadas.
+          Nenhuma pista basta sozinha.
+        </li>
+        <li>
+          Conversem por ligação ou pessoalmente.
+          Os dois devem enviar o código calculado.
+        </li>
+      </ol>
+
+      <div class="row">
+        <span class="pill">13 cenas</span>
+        <span class="pill">60 minutos</span>
+        <span class="pill">3 dicas compartilhadas</span>
+        <span class="pill">3 finais narrativos</span>
+      </div>
+    </section>
+
+    <footer>
+      Os dois celulares precisam de internet.
+      O progresso desta versão fica salvo neste navegador.
+      Para retomar após fechar a página, usem Continuar sala
+      nos celulares originais.
+    </footer>
+  `;
+}
+
+function lobbyMarkup() {
+  return `
+    <p class="eyebrow">A Mansão das Duas Vozes</p>
+
+    <section class="card">
+      <h2>${role === 1 ? "Sua sala está sendo preparada" : "Entrando na sala"}</h2>
+
+      <p class="muted">Código da sala</p>
+      <div class="roomcode">${esc(code)}</div>
+
+      <p id="net">${esc(networkText || "Conectando…")}</p>
+
+      <div class="stack">
+        <button type="button" data-action="copy">
+          Copiar código
+        </button>
+
+        <button type="button" data-action="home">
+          Voltar ao menu
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Seu papel</h3>
+
+      <p>
+        ${
+          role === 1
+            ? "Você verá tabelas, valores e mapas. A outra pessoa verá as regras necessárias para interpretá-los."
+            : "Você verá ordens, fórmulas e coordenadas. A outra pessoa terá os valores necessários."
+        }
+      </p>
+
+      <p class="muted">
+        O cronômetro começa quando os dois estiverem conectados.
+        Não existe modo de revelar a pista da outra pessoa.
+      </p>
+    </section>
+  `;
+}
+
+function headerMarkup() {
+  return `
+    <header class="hud">
+      <div class="row between">
+        <div>
+          <div class="eyebrow">
+            Sala ${esc(code)} · Cena ${S.room + 1}/${SCENES.length}
+          </div>
+
+          <strong>
+            Jogador ${role} ·
+            ${role === 1 ? "O Catálogo" : "A Instrução"}
+          </strong>
+        </div>
+
+        <div>
+          <div id="timer" class="timer">
+            ${formatTime(S.left)}
+          </div>
+          <small id="timeStatus"></small>
+        </div>
+      </div>
+
+      <div class="progress">
+        <span style="width:${(S.room / SCENES.length) * 100}%"></span>
+      </div>
+
+      <small id="net">
+        ${online() ? "Conectados" : esc(networkText || "Reconectando…")}
+      </small>
+    </header>
+  `;
+}
+
+function inventoryMarkup() {
+  return `
+    <details class="card">
+      <summary>
+        Inventário compartilhado · ${S.bag.length} objeto(s)
+      </summary>
+
+      <div class="inventory">
+        ${
+          S.bag.length
+            ? S.bag.map(item => `
+                <span class="item">${esc(item)}</span>
+              `).join("")
+            : '<p class="muted">Nenhum objeto recolhido.</p>'
+        }
+      </div>
+    </details>
+  `;
+}
+
+function objectsMarkup() {
+  const scene = SCENES[S.room];
+  const marker = `${S.room}:${role}`;
+
+  const found = S.found.includes(marker);
+  const made = S.made.includes(S.room);
+  const hasIngredients = scene.items.every(
+    item => S.bag.includes(item)
+  );
+
+  const disabled = activeDisabled();
+
+  return `
+    <section class="card">
+      <h3>Objetos da cena</h3>
+
+      <p>
+        Seu achado:
+        <strong>${esc(scene.items[role - 1])}</strong>
+      </p>
+
+      <button
+        type="button"
+        data-action="look"
+        ${found || disabled ? "disabled" : ""}
+      >
+        ${found ? "Seu objeto já foi recolhido" : "Recolher meu objeto"}
+      </button>
+
+      <p class="muted">
+        Os dois achados podem formar:
+        <strong>${esc(scene.tool)}</strong>.
+      </p>
+
+      <button
+        type="button"
+        data-action="craft"
+        ${made || !hasIngredients || disabled ? "disabled" : ""}
+      >
+        ${made ? "Objeto combinado" : "Combinar os dois objetos"}
+      </button>
+
+      <p class="muted">
+        O objeto combinado e o primeiro enigma resolvido
+        liberam o segundo enigma.
+      </p>
+    </section>
+  `;
+}
+
+function puzzleMarkup(slot) {
+  const scene = SCENES[S.room];
+  const key = puzzleKey(slot);
+  const title = scene.puzzles[slot][0];
+
+  if (S.solved[key]) {
+    return `
+      <section class="card good">
+        <p class="eyebrow">Enigma ${slot + 1}</p>
+        <h3>${esc(title)}</h3>
+        <p class="success">✓ Os dois selos foram aceitos.</p>
+      </section>
+    `;
+  }
+
+  if (!puzzleAvailable(slot)) {
+    return `
+      <section class="card locked">
+        <p class="eyebrow">Enigma ${slot + 1} · bloqueado</p>
+        <h3>${esc(title)}</h3>
+
+        <p class="muted">
+          Resolvam o primeiro enigma e montem
+          <strong>${esc(scene.tool)}</strong>
+          para revelar esta pista.
+        </p>
+      </section>
+    `;
+  }
+
+  const puzzle = buildPuzzle(S.room, slot);
+  const submitted = S.submitted[key] || {};
+
+  const mine = Boolean(submitted[role]);
+  const other = Boolean(submitted[role === 1 ? 2 : 1]);
+
+  const draftKey = `room${S.room}puzzle${slot}`;
+  const disabled = activeDisabled();
+
+  return `
+    <section class="card">
+      <p class="eyebrow">Enigma ${slot + 1}</p>
+      <h3>${esc(title)}</h3>
+
+      ${clueMarkup(puzzle)}
+
+      <div class="seals">
+        <span class="pill ${mine ? "ok" : ""}">
+          Seu selo: ${mine ? "enviado" : "pendente"}
+        </span>
+
+        <span class="pill ${other ? "ok" : ""}">
+          Outro selo: ${other ? "enviado" : "pendente"}
+        </span>
+      </div>
+
+      ${
+        S.feedback[key]
+          ? `<p class="feedback">${esc(S.feedback[key])}</p>`
+          : ""
+      }
+
+      ${
+        mine
+          ? `
+            <p>
+              Seu código está selado.
+              A validação só acontece quando os dois enviarem.
+            </p>
+
+            <button
+              type="button"
+              class="small"
+              data-action="withdraw"
+              data-slot="${slot}"
+              ${disabled ? "disabled" : ""}
+            >
+              Retirar meu selo para editar
+            </button>
+          `
+          : `
+            <form
+              class="answer"
+              data-puzzle-form
+              data-slot="${slot}"
+            >
+              <input
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]{4}"
+                maxlength="4"
+                autocomplete="off"
+                aria-label="Código de quatro algarismos"
+                placeholder="0000"
+                data-numeric
+                data-draft="${draftKey}"
+                value="${esc(drafts[draftKey] || "")}"
+                ${disabled ? "disabled" : ""}
+                required
+              >
+
+              <button
+                type="submit"
+                class="primary"
+                ${disabled ? "disabled" : ""}
+              >
+                Selar
+              </button>
+            </form>
+          `
+      }
+
+      <p class="muted">
+        Conversem e digitem os quatro algarismos
+        nos dois celulares, incluindo zeros à esquerda.
+        Um acerto individual nunca é revelado.
+      </p>
+    </section>
+  `;
+}
+
+function syncMarkup() {
+  const scene = SCENES[S.room];
+
+  if (!scene.sync) return "";
+
+  const mechanism = S.sync[S.room] || {
+    done: false,
+    first: null
+  };
+
+  if (mechanism.done) {
+    return `
+      <section class="card good">
+        <h3>Mecanismo de duas vozes</h3>
+        <p class="success">✓ Acionamento simultâneo concluído.</p>
+      </section>
+    `;
+  }
+  const unlocked = Boolean(
+    S.solved[`${S.room}:0`] &&
+    S.solved[`${S.room}:1`]
+  );
+
+  const pressedByMe = (
+    mechanism.first?.player === role
+  );
+
+  return `
+    <section class="card ${unlocked ? "" : "locked"}">
+      <h3>Mecanismo de duas vozes</h3>
+
+      <p>
+        Depois dos dois enigmas, cada pessoa precisa
+        tocar no próprio botão. Os acionamentos
+        devem chegar com no máximo cinco segundos
+        de diferença.
+      </p>
+
+      ${
+        mechanism.first
+          ? `
+            <p class="sync-count">
+              Segundo acionamento em:
+              <span id="syncCount">5</span>s
+            </p>
+          `
+          : ""
+      }
+
+      ${
+        S.feedback[`sync:${S.room}`]
+          ? `<p class="feedback">${esc(S.feedback[`sync:${S.room}`])}</p>`
+          : ""
+      }
+
+      <button
+        type="button"
+        class="primary"
+        data-action="sync"
+        ${
+          !unlocked ||
+          pressedByMe ||
+          activeDisabled()
+            ? "disabled"
+            : ""
+        }
+      >
+        ${
+          pressedByMe
+            ? "Agora é a vez da outra pessoa"
+            : `Acionar ${role === 1 ? "alavanca esquerda" : "alavanca direita"}`
+        }
+      </button>
+    </section>
+  `;
+}
+
+function finaleMarkup() {
+  const mine = S.votes[role];
+  const other = S.votes[role === 1 ? 2 : 1];
+
+  return `
+    <section class="card">
+      <p class="eyebrow">A decisão das duas âncoras</p>
+      <h2>Que destino vocês escolhem?</h2>
+
+      <p>
+        As duas escolhas iguais conduzem a um destino
+        compartilhado. Escolhas diferentes reativam
+        o isolamento. Conversem antes de selar.
+      </p>
+
+      ${
+        mine
+          ? `
+            <p class="success">
+              Sua escolha:
+              ${
+                mine === "free"
+                  ? "Encerrar o arquivo"
+                  : "Preservar os testemunhos"
+              }.
+            </p>
+
+            <p>
+              ${
+                other
+                  ? "A outra escolha foi recebida."
+                  : "Aguardando a escolha da outra pessoa."
+              }
+            </p>
+          `
+          : `
+            <div class="stack">
+              <button
+                type="button"
+                data-action="vote"
+                data-choice="free"
+                ${activeDisabled() ? "disabled" : ""}
+              >
+                Encerrar o arquivo e dar descanso às vozes
+              </button>
+
+              <button
+                type="button"
+                data-action="vote"
+                data-choice="keep"
+                ${activeDisabled() ? "disabled" : ""}
+              >
+                Preservar o arquivo e os testemunhos
+              </button>
+            </div>
+          `
+      }
+
+      <p class="muted">
+        A escolha fica selada quando enviada.
+      </p>
+    </section>
+  `;
+}
+
+function endingMarkup() {
+  const timedOut = S.end.kind === "timeout";
+
+  const ending = timedOut
+    ? {
+        title: "O tempo se esgotou",
+        text:
+          "O sistema iniciou o isolamento antes que vocês " +
+          "concluíssem o percurso. As vozes se afastam e " +
+          "a mansão volta à escuridão. Esta tentativa terminou " +
+          "sem alcançar um dos três finais narrativos."
+      }
+    : ENDINGS[S.end.kind];
+
+  const completed = timedOut
+    ? S.room + (sceneReady() ? 1 : 0)
+    : SCENES.length;
+
+  return `
+    ${headerMarkup()}
+
+    <section class="card">
+      <p class="eyebrow">Partida encerrada</p>
+      <h1>${esc(ending.title)}</h1>
+
+      <p>${esc(ending.text)}</p>
+
+      <div class="row">
+        <span class="pill">
+          ${completed}/${SCENES.length} cenas concluídas
+        </span>
+
+        <span class="pill">
+          ${3 - S.hintsLeft}/3 dicas utilizadas
+        </span>
+
+        <span class="pill">
+          Tempo restante: ${formatTime(S.left)}
+        </span>
+      </div>
+
+      <div class="stack" style="margin-top:20px">
+        <button
+          type="button"
+          class="primary"
+          data-action="home"
+        >
+          Voltar ao menu
+        </button>
+      </div>
+    </section>
+
+    ${inventoryMarkup()}
+  `;
+}
+
+function gameMarkup() {
+  if (S.end) {
+    return endingMarkup();
+  }
+
+  const scene = SCENES[S.room];
+
+  const roomHints = S.hints.filter(
+    hint => hint.room === S.room
+  );
+
+  return `
+    ${headerMarkup()}
+
+    ${
+      !online()
+        ? `
+          <p class="notice">
+            Conexão interrompida ou em recuperação.
+            O progresso foi mantido. O cronômetro pausa
+            quando o criador detecta a desconexão.
+          </p>
+        `
+        : ""
+    }
+
+    ${
+      !storageOK
+        ? `
+          <p class="notice">
+            Este navegador não permitiu salvar localmente.
+            Evitem fechar ou atualizar a página durante a partida.
+          </p>
+        `
+        : ""
+    }
+
+    <section class="card">
+      <p class="eyebrow">
+        Cena ${S.room + 1} de ${SCENES.length}
+      </p>
+
+      <h2>${esc(scene.name)}</h2>
+
+      <p id="story">${esc(scene.intro)}</p>
+    </section>
+
+    ${objectsMarkup()}
+    ${puzzleMarkup(0)}
+    ${puzzleMarkup(1)}
+    ${syncMarkup()}
+
+    <section class="card">
+      <div class="row between">
+        <h3>Dicas compartilhadas</h3>
+        <span class="pill">${S.hintsLeft}/3 restantes</span>
+      </div>
+
+      <button
+        type="button"
+        data-action="hint"
+        ${
+          S.hintsLeft <= 0 ||
+          activeDisabled() ||
+          sceneReady()
+            ? "disabled"
+            : ""
+        }
+      >
+        Usar uma dica para os dois
+      </button>
+
+      ${roomHints.map(hint => `
+        <p class="notice">${esc(hint.text)}</p>
+      `).join("")}
+    </section>
+
+    ${inventoryMarkup()}
+
+    ${
+      sceneReady()
+        ? `
+          <section class="card good">
+            <h3>A passagem foi liberada</h3>
+            <p>${esc(scene.after)}</p>
+
+            ${
+              S.room < SCENES.length - 1
+                ? `
+                  <button
+                    type="button"
+                    class="primary"
+                    data-action="advance"
+                    ${activeDisabled() ? "disabled" : ""}
+                  >
+                    Ir para a próxima cena
+                  </button>
+                `
+                : ""
+            }
+          </section>
+
+          ${
+            S.room === SCENES.length - 1
+              ? finaleMarkup()
+              : ""
+          }
+        `
+        : ""
+    }
+
+    <footer>
+      <div class="row">
+        <button
+          type="button"
+          class="small"
+          data-action="copy"
+        >
+          Copiar código
+        </button>
+
+        <button
+          type="button"
+          class="small"
+          data-action="home"
+        >
+          Salvar e voltar ao menu
+        </button>
+      </div>
+
+      <p>
+        Não apaguem os dados do navegador durante a partida.
+        Após fechar a página, usem Continuar sala
+        nos celulares originais.
+      </p>
+    </footer>
+  `;
+}
+
+function typeStory() {
+  if (
+    !role ||
+    !S ||
+    !S.started ||
+    S.end
+  ) {
+    return;
+  }
+
+  const identity = `${S.game}:${S.room}`;
+
+  if (identity === typedScene) return;
+
+  typedScene = identity;
+
+  const element = $("story");
+
+  if (!element) return;
+
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    return;
+  }
+
+  const text = SCENES[S.room].intro;
+  const ticket = typingTicket;
+
+  let position = 0;
+  element.textContent = "";
+
+  function next() {
+    if (
+      ticket !== typingTicket ||
+      !element.isConnected
+    ) {
+      return;
+    }
+
+    position += 2;
+    element.textContent = text.slice(0, position);
+
+    if (position < text.length) {
+      setTimeout(next, 22);
+    }
+  }
+
+  next();
+}
+
+function render() {
+  typingTicket++;
+
+  const focused = document.activeElement;
+
+  const focusKey = focused?.dataset?.draft;
+  const selectionStart = focused?.selectionStart;
+  const selectionEnd = focused?.selectionEnd;
+
+  if (
+    focused &&
+    focusKey &&
+    typeof focused.value === "string"
+  ) {
+    drafts[focusKey] = focused.value;
+  }
+
+  if (!role) {
+    root.innerHTML = homeMarkup();
+  } else if (!S || !S.started) {
+    root.innerHTML = lobbyMarkup();
+  } else {
+    root.innerHTML = gameMarkup();
+  }
+
+  if (focusKey) {
+    const replacement = Array.from(
+      root.querySelectorAll("input[data-draft]")
+    ).find(input => input.dataset.draft === focusKey);
+
+    if (replacement && !replacement.disabled) {
+      try {
+        replacement.focus({preventScroll: true});
+
+        replacement.setSelectionRange(
+          selectionStart,
+          selectionEnd
+        );
+      } catch (error) {}
+    }
+  }
+
+  typeStory();
+  updateHUD();
+}
+
+function updateHUD() {
+  if (!S) return;
+
+  let time = S.left;
+
+  if (
+    role === 2 &&
+    S.running &&
+    online() &&
+    !S.end
+  ) {
+    time -= Math.max(
+      0,
+      performance.now() - snapshotAt
+    );
+  }
+
+  const timer = $("timer");
+
+  if (timer) {
+    timer.textContent = formatTime(time);
+    timer.classList.toggle(
+      "urgent",
+      time <= 5 * 60 * 1000
+    );
+  }
+
+  const status = $("timeStatus");
+
+  if (status) {
+    status.textContent = S.end
+      ? "Partida encerrada"
+      : (
+          online() && S.running
+            ? "Em andamento"
+            : "Pausado · aguardando conexão"
+        );
+  }
+
+  const net = $("net");
+
+  if (net) {
+    net.textContent = online()
+      ? (
+          outbox.length
+            ? "Conectados · confirmando ação…"
+            : "Conectados"
+        )
+      : (
+          networkText ||
+          "Reconectando automaticamente…"
+        );
+  }
+
+  const countdown = $("syncCount");
+  const first = S.sync[S.room]?.first;
+
+  if (countdown && first) {
+    const serverTime = role === 1
+      ? Date.now()
+      : Date.now() + hostOffset;
+
+    const remaining = Math.max(
+      0,
+      5000 - (serverTime - first.at)
+    );
+
+    countdown.textContent = Math.ceil(
+      remaining / 1000
+    );
+  }
+}
+
+/* =========================================================
+   EVENTOS DA INTERFACE
+   ========================================================= */
+
+root.addEventListener("input", event => {
+  const input = event.target;
+
+  if (!(input instanceof HTMLInputElement)) {
+    return;
+  }
+
+  if (input.id === "joinCode") {
+    input.value = input.value
+      .toUpperCase()
+      .replace(/[^A-Z]/g, "")
+      .slice(0, 4);
+  }
+
+  if (input.hasAttribute("data-numeric")) {
+    input.value = input.value
+      .replace(/\D/g, "")
+      .slice(0, 4);
+  }
+
+  if (input.dataset.draft) {
+    drafts[input.dataset.draft] = input.value;
+  }
 });
-$("joinBtn").addEventListener("click",()=>{
- const code=$("joinCode").value.toUpperCase().replace(/[^A-Z]/g,"").slice(0,4);
- if(code.length!==4){$("homeMessage").textContent="Digite um código de 4 letras.";return}
- $("homeMessage").textContent="";startPeerGuest(code);
+
+root.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const form = event.target;
+
+  if (form.id === "joinForm") {
+    const value = $("joinCode").value
+      .trim()
+      .toUpperCase();
+
+    if (!/^[A-Z]{4}$/.test(value)) {
+      toast("Digite o código com quatro letras.");
+      return;
+    }
+
+    beginSession(2, value);
+    return;
+  }
+
+  if (form.hasAttribute("data-puzzle-form")) {
+    const input = form.querySelector("input");
+    const value = input.value;
+
+    if (!/^\d{4}$/.test(value)) {
+      toast("Digite quatro algarismos, incluindo zeros à esquerda.");
+      return;
+    }
+
+    sendAction("submit", {
+      slot: Number(form.dataset.slot),
+      value
+    });
+  }
 });
-$("joinCode").addEventListener("input",e=>e.target.value=e.target.value.toUpperCase().replace(/[^A-Z]/g,"").slice(0,4));
-$("hintBtn").addEventListener("click",()=>sendAction({kind:"hint"}));
-$("backHome").addEventListener("click",()=>{if(peer)try{peer.destroy()}catch(e){}show("home")});
-$("againBtn").addEventListener("click",()=>{try{localStorage.removeItem(STORAGE)}catch(e){}location.reload()});
-clockTimer=setInterval(tick,1000);
-setInterval(()=>{if(role==="host"&&peer&&peer.disconnected)try{peer.reconnect()}catch(e){}if(role==="guest"&&peer&&peer.disconnected)try{peer.reconnect()}catch(e){}},5000);
-})();
+  root.addEventListener("click", event => {
+  const button = event.target.closest(
+    "button[data-action]"
+  );
+
+  if (!button || button.disabled) return;
+
+  const action = button.dataset.action;
+
+  if (action === "create") {
+    beginSession(1);
+    return;
+  }
+
+  if (action === "resume") {
+    resumeSession();
+    return;
+  }
+
+  if (action === "home") {
+    returnHome();
+    return;
+  }
+
+  if (action === "copy") {
+    copyCode();
+    return;
+  }
+
+  if (action === "withdraw") {
+    sendAction("withdraw", {
+      slot: Number(button.dataset.slot)
+    });
+    return;
+  }
+
+  if (action === "vote") {
+    sendAction("vote", {
+      choice: button.dataset.choice
+    });
+    return;
+  }
+
+  if (
+    [
+      "look",
+      "craft",
+      "hint",
+      "sync",
+      "advance"
+    ].includes(action)
+  ) {
+    sendAction(action);
+  }
+});
+
+/* =========================================================
+   CRONÔMETRO AUTORITATIVO E JANELAS SIMULTÂNEAS
+   ========================================================= */
+
+setInterval(() => {
+  const now = performance.now();
+  const delta = Math.max(0, now - tickAt);
+
+  tickAt = now;
+
+  const live = online();
+
+  if (role === 1 && S) {
+    const shouldRun = Boolean(
+      live &&
+      S.started &&
+      !S.end
+    );
+
+    const wasRunning = S.running;
+    let changed = false;
+
+    if (shouldRun && wasRunning) {
+      S.left = Math.max(
+        0,
+        S.left - delta
+      );
+    }
+
+    if (S.running !== shouldRun) {
+      S.running = shouldRun;
+      changed = true;
+    }
+
+    if (
+      S.started &&
+      S.left <= 0 &&
+      !S.end
+    ) {
+      S.left = 0;
+      S.running = false;
+
+      S.end = {
+        kind: "timeout",
+        at: Date.now()
+      };
+
+      changed = true;
+    }
+
+    const mechanism = S.sync[S.room];
+
+    if (
+      !S.end &&
+      mechanism &&
+      !mechanism.done &&
+      mechanism.first &&
+      Date.now() - mechanism.first.at > 5000
+    ) {
+      mechanism.first = null;
+
+      S.feedback[`sync:${S.room}`] = (
+        "A janela de cinco segundos terminou. " +
+        "Combinem uma nova contagem e tentem outra vez."
+      );
+
+      changed = true;
+    }
+
+    if (changed) {
+      touch();
+    }
+  }
+
+  if (live !== lastLive) {
+    lastLive = live;
+    render();
+  }
+
+  updateHUD();
+}, 250);
+
+/* =========================================================
+   SALVAMENTO, HEARTBEAT E RECUPERAÇÃO DA REDE
+   ========================================================= */
+
+setInterval(() => {
+  if (!role) return;
+
+  persist();
+
+  if (typeof Peer === "undefined") return;
+
+  const now = Date.now();
+
+  if (!peer || peer.destroyed) {
+    if (now - lastBoot > 3500) {
+      bootPeer();
+    }
+
+    return;
+  }
+
+  if (peer.disconnected) {
+    try {
+      peer.reconnect();
+    } catch (error) {}
+  }
+
+  /*
+    Recupera uma tentativa de registro que tenha
+    ficado presa sem abrir e sem conexão ativa.
+  */
+  if (
+    !peer.open &&
+    !peer.disconnected &&
+    !online() &&
+    now - lastBoot > 25000
+  ) {
+    const previous = peer;
+    peer = null;
+
+    try {
+      previous.destroy();
+    } catch (error) {}
+
+    return;
+  }
+
+  if (
+    role === 2 &&
+    peer.open &&
+    !online() &&
+    now - connectingAt > 10000
+  ) {
+    connectGuest();
+  }
+
+  if (verified && link?.open) {
+    send({type: "beat"});
+
+    if (role === 1) {
+      publish();
+    }
+
+    if (
+      role === 2 &&
+      outbox.length &&
+      online() &&
+      now - lastOutboxSend > 3000
+    ) {
+      flushOutbox();
+    }
+  }
+}, 2000);
+
+window.addEventListener("online", () => {
+  if (!role) return;
+
+  networkText = "Internet recuperada. Reconectando.";
+
+  if (peer?.disconnected) {
+    try {
+      peer.reconnect();
+    } catch (error) {}
+  }
+
+  if (
+    role === 2 &&
+    peer?.open &&
+    !online()
+  ) {
+    connectingAt = 0;
+    connectGuest();
+  }
+
+  render();
+});
+
+window.addEventListener("offline", () => {
+  if (!role) return;
+
+  verified = false;
+  networkText = "Sem internet. O progresso permanece salvo.";
+
+  if (role === 1 && S) {
+    S.running = false;
+    touch();
+  } else {
+    persist();
+    render();
+  }
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (!role) return;
+
+  persist();
+
+  if (!document.hidden) {
+    tickAt = performance.now();
+
+    if (
+      role === 2 &&
+      peer?.open &&
+      !online() &&
+      Date.now() - connectingAt > 3000
+    ) {
+      connectGuest();
+    }
+
+    if (verified && link?.open) {
+      send({type: "beat"});
+
+      if (role === 1) {
+        publish();
+      }
+    }
+
+    updateHUD();
+  }
+});
+
+window.addEventListener("pagehide", () => {
+  if (!role) return;
+
+  if (S) {
+    S.running = false;
+  }
+
+  persist();
+});
+
+window.addEventListener("beforeunload", () => {
+  if (!role) return;
+
+  if (S) {
+    S.running = false;
+  }
+
+  persist();
+});
+
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
+
+render();
+
 </script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"55d6c902a8a143b1ab6c5051b2a1f75b","spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
