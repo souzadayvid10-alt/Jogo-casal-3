@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1115">
+<title>A Mansão das Duas Vozes</title>
+<style>
+:root{--bg:#0d1115;--panel:#171e24;--panel2:#202a31;--line:#34434b;--text:#edf1e8;--muted:#a8b2ad;--gold:#d3ad6a;--red:#c6675f;--green:#87b89a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#29343a 0,#11171b 45%,#090c0f 100%);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input{font:inherit}button{border:1px solid #58646a;background:#28343a;color:var(--text);border-radius:12px;padding:14px 16px;min-height:52px;font-weight:700;cursor:pointer;touch-action:manipulation;transition:transform .12s,background .18s,border-color .18s}button:active{transform:scale(.98)}button:hover{background:#34434a;border-color:var(--gold)}button.primary{background:#a77d40;color:#15120d;border-color:#d0aa69}button.danger{border-color:#95534e;color:#ffd9d4}button:disabled{opacity:.45;cursor:not-allowed}
+input{width:100%;padding:14px;border-radius:11px;border:1px solid #536168;background:#0e1418;color:var(--text);min-height:52px;outline:none}input:focus{border-color:var(--gold);box-shadow:0 0 0 2px #d3ad6a33}
+.wrap{width:min(760px,100%);margin:auto;padding:20px 16px 36px}.brand{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:800}.title{font-family:Georgia,serif;font-weight:500;line-height:1.05;font-size:clamp(2.2rem,10vw,4rem);margin:12px 0}.subtitle{color:var(--muted);max-width:54ch}.screen{animation:fade .35s ease}@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:linear-gradient(145deg,#1a2228ee,#12191eee);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 12px 34px #0003}.stack{display:grid;gap:12px}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}.small{font-size:13px;color:var(--muted)}.label{font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin-bottom:7px}.code{letter-spacing:.25em;font-weight:900;font-size:1.6rem;color:#f0d49e}.hidden{display:none!important}.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0 16px}.pill{border:1px solid var(--line);background:#141b20;padding:8px 12px;border-radius:99px;font-size:13px;white-space:nowrap}.timer{font-variant-numeric:tabular-nums;font-weight:900;color:#f0d49e}.timer.urgent{color:#ff8177;animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.5}}
+.roomhead{display:flex;justify-content:space-between;align-items:end;gap:10px}.roomhead h2{font:500 2rem Georgia,serif;margin:0}.roomart{font-size:2.4rem;opacity:.9}.clue{border-left:3px solid var(--gold);padding:10px 12px;background:#11181c;border-radius:0 10px 10px 0;margin:8px 0;color:#e4e5dc}.clue strong{color:var(--gold)}.puzzle{border:1px solid #38464b;background:#151d22;border-radius:15px;padding:16px;margin:13px 0}.puzzle h3{margin:2px 0 8px;font-size:1rem}.solved{color:var(--green);font-weight:800}.puzzle-controls{display:flex;gap:9px;margin-top:11px}.puzzle-controls input{min-width:0}.puzzle-controls button{flex:0 0 auto}.actions{display:grid;gap:10px}.statusline{display:flex;gap:8px;flex-wrap:wrap}.inventory{display:flex;gap:8px;flex-wrap:wrap}.item{padding:7px 10px;border:1px solid #536354;border-radius:99px;color:#c5e2c4;background:#18231d;font-size:13px}.log{font-size:13px;color:#bbc3bd;min-height:20px;margin-top:8px}.notice{padding:12px;border-radius:10px;background:#2b2417;color:#f0d49e;border:1px solid #665433}.footer{text-align:center;color:#73817d;font-size:12px;margin-top:22px}.hero{padding-top:10vh}.safe{color:var(--green)}.warning{color:#ffc2ac}
+@media(min-width:620px){.wrap{padding-top:32px}.stack.two{grid-template-columns:1fr 1fr}.puzzle{padding:18px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section id="home" class="screen hero">
+    <div class="brand">Jogo cooperativo • 2 celulares</div>
+    <h1 class="title">A Mansão<br>das Duas Vozes</h1>
+    <p class="subtitle">Duas pessoas. Duas versões da verdade. Uma mansão que não quer deixar ninguém sair.</p>
+    <div class="card stack">
+      <button class="primary" id="createBtn">Criar sala</button>
+      <div class="label">ou entrar com um código</div>
+      <div class="row"><input id="joinCode" maxlength="4" placeholder="CÓDIGO" autocomplete="off" aria-label="Código da sala"><button id="joinBtn">Entrar</button></div>
+      <p class="small">Cada jogador usa seu próprio celular. Mantenham a página aberta e conversem por ligação ou WhatsApp: as pistas são diferentes em cada tela.</p>
+    </div>
+    <p class="small">O jogo usa conexão direta entre navegadores via PeerJS. É necessário acesso à internet para estabelecer a conexão.</p>
+    <div id="homeMessage" class="log" role="status"></div>
+  </section>
+
+  <section id="lobby" class="screen hidden">
+    <div class="brand">A Mansão das Duas Vozes</div>
+    <h1 class="title">A sala está pronta.</h1>
+    <div class="card">
+      <div class="label">Compartilhe este código com o outro jogador</div>
+      <div id="roomCode" class="code">----</div>
+      <p id="lobbyStatus" class="small">Aguardando conexão do segundo jogador…</p>
+      <div class="notice">Assim que os dois estiverem conectados, o cronômetro de 60 minutos começa.</div>
+    </div>
+    <button id="backHome" class="danger">Voltar ao início</button>
+  </section>
+
+  <section id="game" class="screen hidden">
+    <div class="topbar">
+      <span class="pill" id="roleBadge">Jogador</span>
+      <span class="pill timer" id="timer">60:00</span>
+    </div>
+    <div class="statusline">
+      <span class="pill" id="roomCounter">Sala 1 de 3</span>
+      <span class="pill" id="connectionBadge">Conectando…</span>
+      <span class="pill" id="hintCount">Dicas: 3</span>
+    </div>
+    <div id="gameContent"></div>
+    <div class="card">
+      <div class="label">Inventário compartilhado</div>
+      <div id="inventory" class="inventory"><span class="small">Ainda vazio</span></div>
+      <div id="lastHint" class="log"></div>
+    </div>
+    <button id="hintBtn" class="danger">Pedir uma dica (restam 3)</button>
+    <div id="gameMessage" class="log" role="status"></div>
+    <div class="footer">Se a conexão cair, o jogo tenta reconectar. O progresso é salvo neste aparelho e sincronizado ao voltar.</div>
+  </section>
+
+  <section id="ending" class="screen hidden">
+    <div class="brand">A Mansão das Duas Vozes</div>
+    <h1 class="title" id="endingTitle">Fim</h1>
+    <div class="card"><p id="endingText"></p><p class="small" id="endingSub"></p></div>
+    <button id="againBtn" class="primary">Jogar novamente</button>
+  </section>
+</main>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script>
+(()=>{
+"use strict";
+const $=id=>document.getElementById(id);
+const STORAGE="duasvozes_v1";
+let peer=null, conn=null, role=null, roomCode="", state=null, retryTimer=null, clockTimer=null, reconnecting=false;
+const rooms=[
+ {name:"Vestíbulo",icon:"🏚️",intro:"O assoalho range sob seus pés. A porta da rua bateu sozinha. No alto da escadaria, um relógio parado marca meia-noite.",puzzles:["foyer_code","foyer_sync"]},
+ {name:"Biblioteca",icon:"📚",intro:"Livros cobrem as paredes. Um deles está aberto numa página arrancada; o ar cheira a papel molhado e ozônio.",puzzles:["library_riddle","library_atlas","library_sync"]},
+ {name:"Laboratório",icon:"⚗️",intro:"Atrás de uma estante, vocês encontram um laboratório clandestino. Duas cadeiras estão presas ao chão, diante de um painel ainda ligado.",puzzles:["lab_sequence","lab_choice"]}
+];
+const clues={
+ foyer_code: {
+  1:"No verso do retrato, alguém escreveu: <strong>“As duas primeiras cifras são 18.”</strong>",
+  2:"No bilhete queimado: <strong>“As duas últimas cifras são 42.”</strong> Uma anotação diz para unir as partes nessa ordem."
+ },
+ foyer_sync:{
+  1:"Há um botão de latão na coluna da esquerda. A inscrição diz: <strong>“Só duas mãos podem calar a casa.”</strong>",
+  2:"Você vê um botão de latão na coluna da direita. A inscrição repete: <strong>“Só duas mãos podem calar a casa.”</strong>"
+ },
+ library_riddle:{
+  1:"Na margem do livro: <strong>“Visto de noite, mas não sou sonho; tenho asas, mas não sou anjo.”</strong>",
+  2:"Na folha solta: <strong>“Meu nome começa como um corvo e termina como o som que ele faz.”</strong>"
+ },
+ library_atlas:{
+  1:"O mapa tem uma marca sob a mansão. A legenda está rasgada; você só consegue ler: <strong>“gire a chave de latão.”</strong>",
+  2:"No atlas, uma frase: <strong>“A casa tem um coração escondido sob a tinta azul.”</strong> O desenho sugere usar a chave encontrada no vestíbulo."
+ },
+ library_sync:{
+  1:"Uma estante tem um puxador com o símbolo de uma lua. O mecanismo range quando você o toca.",
+  2:"Outra estante tem um puxador com o símbolo de um sol. Uma linha no chão liga os dois mecanismos."
+ },
+ lab_sequence:{
+  1:"No monitor: <strong>“O pulso começa no 3. O segundo é um a mais; o terceiro volta ao 1; o último é o dobro do primeiro, menos dois.”</strong>",
+  2:"Na prancheta: <strong>“Siga a sequência do coração: 3, depois 4, depois 1. O último número é 2.”</strong>"
+ },
+ lab_choice:{
+  1:"O relatório revela que os testes tentavam copiar lembranças de duas pessoas. Há uma alavanca vermelha marcada <strong>APAGAR</strong>.",
+  2:"Um áudio descreve a verdade: <strong>“A mansão é uma simulação alimentada pelas memórias de vocês.”</strong> Há um comando azul: <strong>TRANSMITIR</strong>."
+ }
+};
+const puzzleNames={
+ foyer_code:"Trava do portão",foyer_sync:"Dois botões",
+ library_riddle:"A charada do corvo",library_atlas:"O atlas oculto",library_sync:"As estantes gêmeas",
+ lab_sequence:"Painel do coração",lab_choice:"O destino da mansão"
+};
+const hints={
+ foyer_code:"Juntem as duas metades na ordem indicada: primeiro a pista do retrato, depois a do bilhete.",
+ foyer_sync:"Cada pessoa precisa apertar seu botão com poucos segundos de diferença.",
+ library_riddle:"A resposta é uma ave noturna que também dá nome a um som.",
+ library_atlas:"A chave de latão está no inventário compartilhado; use-a no mapa.",
+ library_sync:"Um jogador deve acionar a estante da lua e o outro a do sol, dentro de 5 segundos.",
+ lab_sequence:"A sequência completa está dividida entre as duas pistas. Digitem os quatro números juntos, sem espaços.",
+ lab_choice:"Não há resposta certa: conversem sobre a verdade que descobriram e escolham juntos um final."
+};
+function show(which){["home","lobby","game","ending"].forEach(id=>$(id).classList.toggle("hidden",id!==which))}
+function msg(text){$("gameMessage").textContent=text||""}
+function save(){if(state&&role==="host")try{localStorage.setItem(STORAGE,JSON.stringify({roomCode,state}))}catch(e){}}
+function loadSaved(){try{const x=JSON.parse(localStorage.getItem(STORAGE)||"null");return x&&x.state?x:null}catch(e){return null}}
+function newState(){return {version:1,room:0,solved:[],inventory:[],hints:3,startedAt:null,ended:null,sync:{},lastHint:"",choice:null,history:[]}}
+function broadcast(){if(role==="host"&&conn&&conn.open)try{conn.send({type:"state",state})}catch(e){}}
+function connectStatus(ok){$("connectionBadge").textContent=ok?"Conectados":"Reconectando…";$("lobbyStatus").textContent=ok?"O segundo jogador chegou. A mansão desperta…":"Aguardando conexão do segundo jogador…"}
+function startPeerHost(code){
+ role="host";roomCode=code;state=(loadSaved()?.roomCode===code?loadSaved().state:newState());
+ if(peer){try{peer.destroy()}catch(e){}}
+ if(!window.Peer){$("homeMessage").textContent="Não foi possível carregar PeerJS. Verifique a internet e recarregue.";return}
+ peer=new Peer("duasvozes-"+code.toLowerCase());
+ peer.on("open",()=>{$("roomCode").textContent=code;$("lobbyStatus").textContent="Aguardando conexão do segundo jogador…";show("lobby")});
+ peer.on("connection",c=>{if(conn&&conn.open){try{c.close()}catch(e){}return}conn=c;wireHost(c)});
+ peer.on("disconnected",()=>{setTimeout(()=>{if(peer&&!peer.destroyed)try{peer.reconnect()}catch(e){}},1500)});
+ peer.on("error",e=>{$("homeMessage").textContent="Conexão indisponível: "+(e.type==="unavailable-id"?"este código já está em uso; crie outra sala.":"tente novamente em alguns instantes.");});
+}
+function wireHost(c){
+ c.on("open",()=>{connectStatus(true);if(!state.startedAt&&!state.ended)state.startedAt=Date.now();c.send({type:"state",state});save();show(state.ended?"ending":"game");render();});
+ c.on("data",packet=>{if(packet&&packet.type==="action")apply(packet.action,2)});
+ c.on("close",()=>{connectStatus(false);msg("Conexão interrompida. Tentando restabelecer…")});
+ c.on("error",()=>connectStatus(false));
+}
+function startPeerGuest(code){
+ role="guest";roomCode=code;show("lobby");$("roomCode").textContent=code;$("lobbyStatus").textContent="Conectando à sala…";
+ if(!window.Peer){$("homeMessage").textContent="Não foi possível carregar PeerJS. Verifique a internet e recarregue.";show("home");return}
+ peer=new Peer();
+ peer.on("open",()=>{connectGuest()});
+ peer.on("disconnected",()=>{setTimeout(()=>{if(peer&&!peer.destroyed)try{peer.reconnect()}catch(e){}},1200)});
+ peer.on("error",e=>{if(e.type!=="peer-unavailable")$("lobbyStatus").textContent="Conexão instável; tentando novamente…"});
+ function connectGuest(){
+   if(!peer||peer.destroyed||conn&&conn.open)return;
+   conn=peer.connect("duasvozes-"+code.toLowerCase(),{reliable:true});
+   conn.on("open",()=>{connectStatus(true);$("lobbyStatus").textContent="Conectado. Sincronizando…"});
+   conn.on("data",packet=>{if(packet&&packet.type==="state"){state=packet.state;saveGuest();show(state.ended?"ending":"game");render()}});
+   conn.on("close",()=>{connectStatus(false);if(retryTimer)clearTimeout(retryTimer);retryTimer=setTimeout(connectGuest,1800)});
+   conn.on("error",()=>{if(retryTimer)clearTimeout(retryTimer);retryTimer=setTimeout(connectGuest,2500)});
+ }
+ window._connectGuest=connectGuest;
+}
+function saveGuest(){try{localStorage.setItem(STORAGE,JSON.stringify({roomCode,state}))}catch(e){}}
+function sendAction(action){if(role==="host")apply(action,1);else if(conn&&conn.open)conn.send({type:"action",action});else msg("Sem conexão — tentando reconectar.")}
+function apply(a,player){
+ if(!state||state.ended)return;
+ const now=Date.now();
+ if(a.kind==="hint"){
+   if(state.hints<=0){msg("As três dicas já foram usadas.");return}
+   let key=rooms[state.room].puzzles.find(k=>!state.solved.includes(k));
+   state.hints--;state.lastHint=key?(hints[key]||"Conversem e comparem as pistas."):"Conversem sobre o final que desejam.";
+   msg("Dica revelada para os dois.");save();broadcast();render();return;
+ }
+ if(a.kind==="answer"){
+   const key=a.key, val=String(a.value||"").trim().toLowerCase().replace(/\s/g,"");
+   const expected={foyer_code:"1842",library_riddle:"corvo",lab_sequence:"3412"}[key];
+   if(expected&&val===expected){solve(key);msg("Correto. O mecanismo cede.");}
+   else msg("Isso não parece certo. Compare as pistas com o outro jogador.");
+ }else if(a.kind==="use"){
+   if(a.key==="library_atlas"&&state.inventory.includes("Chave de latão")){solve(a.key);if(!state.inventory.includes("Cartão de acesso"))state.inventory.push("Cartão de acesso");msg("A chave abre um compartimento. Um cartão de acesso aparece no inventário.");}
+   else msg("Ainda falta algo. Verifiquem o inventário e as pistas.");
+ }else if(a.kind==="sync"){
+   const k=a.key;
+   const prev=state.sync[k];
+   if(prev&&prev.player!==player&&now-prev.at<=5000){solve(k);delete state.sync[k];msg("Ao mesmo tempo! O mecanismo destrava.");}
+   else{state.sync[k]={player,at:now};msg("Ação registrada. O outro jogador precisa acionar o mecanismo em até 5 segundos.");setTimeout(()=>{if(state&&state.sync[k]&&Date.now()-state.sync[k].at>5000){delete state.sync[k];save();broadcast();render()}},5100)}
+ }else if(a.kind==="choice"){
+   if(!state.solved.includes("lab_sequence")){msg("Ativem primeiro o painel do coração.");return}
+   state.choice=a.value;state.ended=a.value;save();broadcast();render();show("ending");return;
+ }
+ save();broadcast();render();
+}
+function solve(key){
+ if(state.solved.includes(key))return;
+ state.solved.push(key);
+ if(key==="foyer_sync"&& !state.inventory.includes("Chave de latão"))state.inventory.push("Chave de latão");
+ const current=rooms[state.room];
+ if(current.puzzles.every(k=>state.solved.includes(k))){
+   if(state.room<rooms.length-1){state.room++;state.history.push("Sala liberada: "+rooms[state.room].name);state.lastHint="";msg("Uma passagem se abre. Vocês avançaram para "+rooms[state.room].name+".")}
+   else {state.history.push("O laboratório está sob controle.");}
+ }
+}
+function render(){
+ if(!state)return;
+ if(state.ended){renderEnding();return}
+ if(state.startedAt&&Math.floor((Date.now()-state.startedAt)/1000)>=3600){state.ended="timeout";if(role==="host"){save();broadcast()}renderEnding();show("ending");return}
+ $("roleBadge").textContent=role==="host"?"Jogador 1":"Jogador 2";
+ $("roomCounter").textContent=`Sala ${Math.min(state.room+1,3)} de 3`;
+ $("hintCount").textContent=`Dicas: ${state.hints}`;
+ $("hintBtn").textContent=`Pedir uma dica (restam ${state.hints})`;
+ $("hintBtn").disabled=state.hints<=0;
+ $("inventory").innerHTML=state.inventory.length?state.inventory.map(x=>`<span class="item">${escapeHtml(x)}</span>`).join(""):'<span class="small">Ainda vazio</span>';
+ $("lastHint").innerHTML=state.lastHint?`<span class="warning">Dica compartilhada:</span> ${escapeHtml(state.lastHint)}`:"";
+ const r=rooms[state.room];
+ $("gameContent").innerHTML=`<div class="card"><div class="roomhead"><div><div class="label">Local</div><h2>${r.name}</h2></div><div class="roomart">${r.icon}</div></div><p>${r.intro}</p><div class="clue"><strong>Sua pista • Jogador ${role==="host"?"1":"2"}:</strong> ${clues[r.puzzles.find(k=>!state.solved.includes(k))]?.[role==="host"?1:2]||"Compare as informações e escolham como prosseguir."}</div></div>`+r.puzzles.map(renderPuzzle).join("");
+ $("gameContent").querySelectorAll("[data-submit]").forEach(btn=>btn.addEventListener("click",()=>{const key=btn.dataset.submit;const inp=$("input-"+key);sendAction({kind:"answer",key,value:inp?inp.value:""})}));
+ $("gameContent").querySelectorAll("[data-use]").forEach(btn=>btn.addEventListener("click",()=>sendAction({kind:"use",key:btn.dataset.use})));
+ $("gameContent").querySelectorAll("[data-sync]").forEach(btn=>btn.addEventListener("click",()=>sendAction({kind:"sync",key:btn.dataset.sync})));
+ $("gameContent").querySelectorAll("[data-choice]").forEach(btn=>btn.addEventListener("click",()=>sendAction({kind:"choice",value:btn.dataset.choice})));
+ $("gameContent").querySelectorAll("input").forEach(inp=>inp.addEventListener("keydown",e=>{if(e.key==="Enter")$(`button[data-submit="${inp.id.slice(6)}"]`).click()}));
+ save();if(role==="host")broadcast();
+}
+function renderPuzzle(key){
+ const done=state.solved.includes(key), clue=clues[key][role==="host"?1:2];
+ let control="";
+ if(key==="foyer_code")control=`<div class="puzzle-controls"><input id="input-${key}" inputmode="numeric" maxlength="4" placeholder="Código de 4 dígitos"><button data-submit="${key}">Testar</button></div>`;
+ if(key==="foyer_sync")control=`<p class="small">Cada jogador aciona o botão do próprio lado; o segundo toque deve ocorrer em até 5 segundos.</p><button data-sync="${key}">Acionar meu botão</button>`;
+ if(key==="library_riddle")control=`<div class="puzzle-controls"><input id="input-${key}" maxlength="18" placeholder="Resposta"><button data-submit="${key}">Responder</button></div>`;
+ if(key==="library_atlas")control=`<p class="small">Use a chave de latão compartilhada para abrir o compartimento.</p><button data-use="${key}" ${!state.inventory.includes("Chave de latão")?"disabled":""}>Usar chave no atlas</button>`;
+ if(key==="library_sync")control=`<p class="small">Uma pessoa toca a estante da lua; a outra, a do sol. Façam isso em até 5 segundos.</p><button data-sync="${key}">Puxar meu mecanismo</button>`;
+ if(key==="lab_sequence")control=`<div class="puzzle-controls"><input id="input-${key}" inputmode="numeric" maxlength="4" placeholder="Sequência de 4 números"><button data-submit="${key}">Ativar</button></div>`;
+ if(key==="lab_choice")control=`<p class="small">A verdade está revelada. Conversem e escolham juntos — a decisão de qualquer jogador determina o desfecho.</p><div class="actions"><button class="danger" data-choice="burn">Queimar os arquivos e destruir a simulação</button><button data-choice="reveal">Transmitir a verdade ao mundo</button><button class="primary" data-choice="stay">Permanecer na mansão para salvar as memórias</button></div>`;
+ return `<article class="puzzle"><h3>${escapeHtml(puzzleNames[key])} ${done?'<span class="solved">✓ Resolvido</span>':''}</h3><div class="clue"><strong>Sua pista:</strong> ${clue}</div>${done?'<p class="small safe">Resolvido pelos dois jogadores.</p>':control}</article>`;
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderEnding(){
+ clearInterval(clockTimer);
+ const endings={
+ burn:["Cinzas e silêncio","Vocês destroem o núcleo. A mansão desaba em luz branca; as memórias ficam livres, mas algumas lembranças de vocês desaparecem junto com os arquivos."],
+ reveal:["A verdade atravessa a noite","A transmissão escapa para o mundo. Quando a porta se abre, equipes de resgate aguardam do lado de fora. A mansão não poderá esconder o que fez."],
+ stay:["Dois guardiões","Vocês ficam para manter as memórias vivas. A porta se abre para um de vocês — mas, no corredor, a voz do outro ainda chama pelo seu nome."],
+ timeout:["A casa fecha os olhos","Os sessenta minutos acabam. A mansão apaga as luzes, e duas novas fotografias aparecem no vestíbulo."]
+ };
+ let data=endings[state.ended]||endings.timeout;
+ $("endingTitle").textContent=data[0];$("endingText").textContent=data[1];
+ $("endingSub").textContent=state.ended==="timeout"?"O tempo terminou.":"Desfecho escolhido em conjunto — ou por quem conseguiu tocar no painel primeiro.";
+ show("ending");
+}
+function tick(){
+ if(!state||!state.startedAt||state.ended)return;
+ const left=Math.max(0,3600-Math.floor((Date.now()-state.startedAt)/1000));
+ $("timer").textContent=`${String(Math.floor(left/60)).padStart(2,"0")}:${String(left%60).padStart(2,"0")}`;
+ $("timer").classList.toggle("urgent",left<=300);
+ if(left<=0&&role==="host"){state.ended="timeout";save();broadcast();renderEnding()}
+}
+$("createBtn").addEventListener("click",()=>{
+ const code=Array.from({length:4},()=>String.fromCharCode(65+Math.floor(Math.random()*26))).join("");
+ $("homeMessage").textContent="";startPeerHost(code);
+});
+$("joinBtn").addEventListener("click",()=>{
+ const code=$("joinCode").value.toUpperCase().replace(/[^A-Z]/g,"").slice(0,4);
+ if(code.length!==4){$("homeMessage").textContent="Digite um código de 4 letras.";return}
+ $("homeMessage").textContent="";startPeerGuest(code);
+});
+$("joinCode").addEventListener("input",e=>e.target.value=e.target.value.toUpperCase().replace(/[^A-Z]/g,"").slice(0,4));
+$("hintBtn").addEventListener("click",()=>sendAction({kind:"hint"}));
+$("backHome").addEventListener("click",()=>{if(peer)try{peer.destroy()}catch(e){}show("home")});
+$("againBtn").addEventListener("click",()=>{try{localStorage.removeItem(STORAGE)}catch(e){}location.reload()});
+clockTimer=setInterval(tick,1000);
+setInterval(()=>{if(role==="host"&&peer&&peer.disconnected)try{peer.reconnect()}catch(e){}if(role==="guest"&&peer&&peer.disconnected)try{peer.reconnect()}catch(e){}},5000);
+})();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"55d6c902a8a143b1ab6c5051b2a1f75b","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
